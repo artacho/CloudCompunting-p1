@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+ 
+<h:head>
+	<title>Tapalia. Home.</title>
+	<!-- Latest compiled and minified CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	
+	<!-- Optional theme -->
+	<h:outputStylesheet library="css" name="bootstrap-theme.min.css"></h:outputStylesheet>
+	
+	<!-- Own theme -->
+	<h:outputStylesheet library="css" name="propio.css"></h:outputStylesheet>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	
+	<!-- Latest compiled and minified JQuery -->
+	<h:outputScript library="js" name="jquery-2.1.4.min.js" />
+</h:head>
+<h:body>
+	<div class="container col-md-12" id="header">
+		<!-- Header -->
+		<div id="header-title">
+			<h1>Tapalia</h1><h3>Tu ruta de tapas Malagueña</h3><h4>Ayuntamiento de Málaga</h4>
+		</div>
+		
+		<!-- Menu -->
+		<div class="col-md-12">
+			<div class="col-md-2"></div>
+			<div class="container col-md-8">
+				<div class="container-fluid">
+			        <div class="navbar-header">
+			          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			          <a class="navbar-brand" href="#"><h:graphicImage library="images" name="logo.png" id="logo" /></a>
+			        </div>
+			
+			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+			          <ul class="nav navbar-nav">
+			            <li class="active"><a href="#">Home</a></li>
+			            <li><a href="anadir.xhtml">Añadir nuevo restaurante</a></li>
+			            <li><a href="#">Contacta</a></li>
+			          </ul>
+			        </div><!-- /.navbar-collapse -->
+			      </div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+		<!-- left pane -->
+		<div class="col-md-12">
+			<div class="col-md-2">
+			</div>
+			<!-- content pane -->
+			<div class="container col-md-8" id="contenido">
+				<section id="pricePlans">
+					<ul id="plans">
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Bar Casa Pepe</h2></li>
+								<li class="price"><p>C/Avenida Andalucía 12</p></li>
+								<li>
+									<ul class="options">
+										<li>casapepe@tapalia.com <span></span></li>
+										<li>68721525</li>
+										<li>Bar Casa Pepe, tu tapería de siempre al precio de siempre</li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+			
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2 class="bestPlanTitle">Plan 2</h2></li>
+								<li class="price"><p class="bestPlanPrice">$20/month</p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a class="bestPlanButton" href="#">Purchase</a></li>
+							</ul>
+						</li>
+			
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 3</h2></li>
+								<li class="price"><p>$30/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+			
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 4</h2></li>
+								<li class="price"><p>$40/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul id="plans">
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 4</h2></li>
+								<li class="price"><p>$40/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+						
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 4</h2></li>
+								<li class="price"><p>$40/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+						
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 4</h2></li>
+								<li class="price"><p>$40/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+						
+						<li class="plan">
+							<ul class="planContainer">
+								<li class="title"><h2>Plan 4</h2></li>
+								<li class="price"><p>$40/<span>month</span></p></li>
+								<li>
+									<ul class="options">
+										<li>2x <span>option 1</span></li>
+										<li>Free <span>option 2</span></li>
+										<li>Unlimited <span>option 3</span></li>
+										<li>Unlimited <span>option 4</span></li>
+										<li>1x <span>option 5</span></li>
+									</ul>
+								</li>
+								<li class="button"><a href="#">Purchase</a></li>
+							</ul>
+						</li>
+					</ul> <!-- End ul#plans -->
+				</section>
+			</div>
+			<!-- right pane -->
+			<div class="col-md-2">
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

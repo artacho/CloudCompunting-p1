@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+ 
+<h:head>
+	<title>Tapalia. Añadir nuevo restaurante a la ruta.</title>
+	<!-- Latest compiled and minified CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	
+	<!-- Optional theme -->
+	<h:outputStylesheet library="css" name="bootstrap-theme.min.css"></h:outputStylesheet>
+	
+	<!-- Own theme -->
+	<h:outputStylesheet library="css" name="propio.css"></h:outputStylesheet>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	
+	<!-- Latest compiled and minified JQuery -->
+	<h:outputScript library="js" name="jquery-2.1.4.min.js" />
+</h:head>
+<h:body>
+	<div class="container col-md-12" id="header">
+		<!-- Header -->
+		<div id="header-title">
+			<h1>Tapalia</h1><h3>Tu ruta de tapas Malagueña</h3><h4>Ayuntamiento de Málaga</h4>
+		</div>
+		
+		<!-- Menu -->
+		<div class="col-md-12">
+			<div class="col-md-2"></div>
+			<div class="container col-md-8">
+				<div class="container-fluid">
+			        <div class="navbar-header">
+			          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			          </button>
+			          <a class="navbar-brand" href="#"><h:graphicImage library="images" name="logo.png" id="logo" /></a>
+			        </div>
+			
+			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+			          <ul class="nav navbar-nav">
+			            <li><a href="index.xhtml">Home</a></li>
+			            <li class="active"><a href="#">Añadir nuevo restaurante</a></li>
+			            <li><a href="#">Contacta</a></li>
+			          </ul>
+			        </div><!-- /.navbar-collapse -->
+			      </div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+		<!-- left pane -->
+		<div class="col-md-12">
+			<div class="col-md-2">
+			</div>
+			<!-- content pane -->
+			<div class="container col-md-8" id="contenido">
+<!-- ************************************************************************************************************************************************ -->
+<div class="panel panel-default signup">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">
+                            Sign Up</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="">
+                        <div class="form-group">
+                            <label for="inputfirstname" class="col-md-4 control-label">
+                                First Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputfirstname" placeholder="Enter First Name..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputlastname" class="col-md-4 control-label">
+                                Last Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputlastname" placeholder="Enter Last Name..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputscreenname" class="col-md-4 control-label">
+                                Screen Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputscreenname" placeholder="Enter Screen Name..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputdateofbirth" class="col-md-4 control-label">
+                                Date of Birth</label>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <select class="form-control" name="">
+                                            <option value="">January</option>
+                                            <option value="">February</option>
+                                            <option value="">March</option>
+                                            <option value="">April</option>
+                                            <option selected="" value="">May</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select name="" class="form-control">
+                                            <option value="">1</option>
+                                            <option value="">2</option>
+                                            <option value="">3</option>
+                                            <option value="">4</option>
+                                            <option selected="" value="">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="" class="form-control">
+                                            <option value="">1980</option>
+                                            <option value="">1981</option>
+                                            <option value="">1982</option>
+                                            <option value="">1983</option>
+                                            <option value="">1984</option>
+                                            <option selected="" value="">1985</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputgender" class="col-md-4 control-label">
+                                Gender</label>
+                            <div class="col-md-8 ">
+                                <label>
+                                    <input type="radio" name="gender" />
+                                    Male
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" />
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUsername" class="col-md-4 control-label">
+                                Country</label>
+                            <div class="col-md-8">
+                                <select name="" class="form-control">
+                                    <option value="">Australia</option>
+                                    <option value="">Canada</option>
+                                    <option value="">United Kingdom</option>
+                                    <option selected="" value="">USA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputemail" class="col-md-4 control-label">
+                                E-mail</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputemail" placeholder="Enter E-mail......" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputphone" class="col-md-4 control-label">
+                                Phone</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputphone" placeholder="Enter Phone......" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputpassword" class="col-md-4 control-label">
+                                Password</label>
+                            <div class="col-md-8">
+                                <input type="password" name="" class="form-control" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputconfirmpassword" class="col-md-4 control-label">
+                                Confirm Password</label>
+                            <div class="col-md-8">
+                                <input type="password" name="" class="form-control" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        I agree to the Terms of Use
+                                        <input type="checkbox" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" name="submit" value="Cancel" class="btn btn-default pull-right btn-primary" />
+                                    <input type="submit" name="submit" value="submit" class="btn btn-default pull-right btn-submit btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		</div>
+<!-- ****************************************************************************************************************************************************** -->				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+			<!-- right pane -->
+			<div class="col-md-2">
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
