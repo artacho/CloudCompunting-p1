@@ -72,27 +72,27 @@
 	            <h1 class="panel-title">
 	                Registro</h1>
 	        </div>
+	        <h:form class="form-horizontal">
 	        <div class="panel-body" style="color:black;">
-	            <form class="form-horizontal" action="">
 	            <div class="form-group">
 	                <label for="inputmail" class="col-md-2 control-label">
 	                    Correo electrónico</label>
 	                <div class="col-md-10">
-	                    <h:inputText type="text" class="form-control" id="inputmail" p:placeholder="Introduzca su e-mail..." />
+	                    <h:inputText type="text" value="#{restauranteBean.email}" class="form-control" id="inputmail" p:placeholder="Introduzca su e-mail..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <label for="inputname" class="col-md-2 control-label">
 	                    Nombre</label>
 	                <div class="col-md-10">
-	                    <h:inputText type="text" class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
+	                    <h:inputText type="text" value="#{restauranteBean.nombre}"  class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <label for="inputsurname" class="col-md-2 control-label">
 	                    Apellidos</label>
 	                <div class="col-md-10">
-	                    <h:inputText class="form-control" id="inputsurname" p:placeholder="Introduzca sus apellidos..." />
+	                    <h:inputText class="form-control"  id="inputsurname" p:placeholder="Introduzca sus apellidos..." />
 	                </div>
 	            </div>
 	            <!--
@@ -137,21 +137,21 @@
 	                <label for="inputdirection" class="col-md-2 control-label">
 	                    Dirección</label>
 	                <div class="col-md-10">
-	                    <h:inputText class="form-control" id="inputdirection" p:placeholder="Introduzca su dirección..." />
+	                    <h:inputText class="form-control" value="#{restauranteBean.direccion}"  id="inputdirection" p:placeholder="Introduzca su dirección..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <label for="inputphone" class="col-md-2 control-label">
 	                    Teléfono</label>
 	                <div class="col-md-10">
-	                    <h:inputText class="form-control" id="inputphone" p:placeholder="Introduzca su teléfono de contacto..." />
+	                    <h:inputText class="form-control" value="#{restauranteBean.telefono}"  id="inputphone" p:placeholder="Introduzca su teléfono de contacto..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <label for="inputdescription" class="col-md-2 control-label">
 	                    Descripción</label>
 	                <div class="col-md-10">
-	                    <h:inputTextarea rows="10" class="form-control" id="inputemail" p:placeholder="Introduzca una descripción..." />
+	                    <h:inputTextarea rows="10" value="#{restauranteBean.descripcion}"  class="form-control" id="inputemail" p:placeholder="Introduzca una descripción..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
@@ -164,18 +164,19 @@
 	                    </div>
 	                </div>
 	            </div>
-	            </form>
 	        </div>
 	        <div class="panel-footer">
 	            <div class="row">
 	                <div class="form-group">
 	                    <div class="col-md-12">
 	                        <input type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary" />
-	                        <input type="submit" name="submit" value="Enviar" class="btn btn-default pull-right btn-submit btn-success" />
+	                        <!--  <input  name="submit" value="Enviar" class="btn btn-default pull-right btn-submit btn-success" />-->
+	                        <h:commandButton type="submit"  value="Enviar" class="btn btn-default pull-right btn-submit btn-success" action="#{restauranteBean.anadirRestaurante}"/>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
+	        </h:form>
 		</div>
 <!-- ****************************************************************************************************************************************************** -->				
 				

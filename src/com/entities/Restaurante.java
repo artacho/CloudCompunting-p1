@@ -22,10 +22,12 @@ public class Restaurante implements Serializable {
 	
 	// constructores
 	
-	public Restaurante(final String nombre, final String direccion ){
+	public Restaurante(String email, String nombre, String direccion, String telefono, String descripcion){
+		entity.setProperty(EMAIL, email);
 		entity.setProperty(NOMBRE, nombre);
 		entity.setProperty(DIRECCION, direccion);
-		
+		entity.setProperty(TELEFONO, telefono);
+		entity.setProperty(DESCRIPCION, descripcion);
 	}
 	
 	

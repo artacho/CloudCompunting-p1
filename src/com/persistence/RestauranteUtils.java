@@ -18,10 +18,10 @@ public class RestauranteUtils {
 	
 	private static final int FETCH_MAX_RESULTS = 10;
 	
-	public static void insert(final String nombre, final String direccion) {
+	public static void insert(String email, String nombre, String direccion, String telefono, String descripcion) {
 		
 		final DatastoreService datastoreService = DSF.getDatastoreService();
-		final Restaurante restaurante = new Restaurante(nombre, direccion);		
+		final Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion);		
 		datastoreService.put(restaurante.getEntity());
 		
 	}
@@ -40,9 +40,12 @@ public class RestauranteUtils {
 	}
 	
 	private static Restaurante convertEntityToRestaurante (final Entity entity) {
+		final String email = (String) entity.getProperty(Restaurante.EMAIL);
 		final String nombre = (String) entity.getProperty(Restaurante.NOMBRE);
 		final String direccion = (String) entity.getProperty(Restaurante.DIRECCION);
-		return new Restaurante(nombre, direccion);
+		final String telefono = (String) entity.getProperty(Restaurante.TELEFONO);
+		final String descripcion = (String) entity.getProperty(Restaurante.DESCRIPCION);
+		return new Restaurante(email, nombre, direccion, telefono, descripcion);
 	}
 	
 	private static Query configureQuery () {
