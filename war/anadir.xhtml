@@ -3,8 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
- 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/passthrough"
+>
+<!-- xmlns:p="http://xmlns.jcp.org/jsf/passthrough" -->	
 <h:head>
 	<title>Tapalia. Añadir nuevo restaurante a la ruta.</title>
 	<!-- Latest compiled and minified CSS -->
@@ -16,11 +18,13 @@
 	<!-- Own theme -->
 	<h:outputStylesheet library="css" name="propio.css"></h:outputStylesheet>
 	
+	<!-- Latest compiled and minified JQuery -->
+	<h:outputScript library="js" name="jquery-2.1.4.min.js" />
+		
 	<!-- Latest compiled and minified JavaScript -->
 	<h:outputScript library="js" name="bootstrap.min.js" />
 	
-	<!-- Latest compiled and minified JQuery -->
-	<h:outputScript library="js" name="jquery-2.1.4.min.js" />
+
 </h:head>
 <h:body>
 	<div class="container col-md-12" id="header">
@@ -66,31 +70,32 @@
 		<div class="panel panel-default signup">
 	        <div class="panel-heading">
 	            <h1 class="panel-title">
-	                Sign Up</h1>
+	                Registro</h1>
 	        </div>
 	        <div class="panel-body" style="color:black;">
 	            <form class="form-horizontal" action="">
 	            <div class="form-group">
-	                <label for="inputfirstname" class="col-md-2 control-label">
+	                <label for="inputmail" class="col-md-2 control-label">
 	                    Correo electrónico</label>
 	                <div class="col-md-10">
-	                    <input type="text" class="form-control" id="inputfirstname" placeholder="Enter First Name..." />
+	                    <h:inputText type="text" class="form-control" id="inputmail" p:placeholder="Introduzca su e-mail..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
-	                <label for="inputlastname" class="col-md-2 control-label">
-	                    Last Name</label>
+	                <label for="inputname" class="col-md-2 control-label">
+	                    Nombre</label>
 	                <div class="col-md-10">
-	                    <input type="text" class="form-control" id="inputlastname" placeholder="Enter Last Name..." />
+	                    <h:inputText type="text" class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
-	                <label for="inputscreenname" class="col-md-2 control-label">
-	                    Screen Name</label>
+	                <label for="inputsurname" class="col-md-2 control-label">
+	                    Apellidos</label>
 	                <div class="col-md-10">
-	                    <input type="text" class="form-control" id="inputscreenname" placeholder="Enter Screen Name..." />
+	                    <h:inputText class="form-control" id="inputsurname" p:placeholder="Introduzca sus apellidos..." />
 	                </div>
 	            </div>
+	            <!--
 	            <div class="form-group">
 	                <label for="inputdateofbirth" class="col-md-2 control-label">
 	                    Date of Birth</label>
@@ -127,66 +132,34 @@
 	                    </div>
 	                </div>
 	            </div>
+	            -->
 	            <div class="form-group">
-	                <label for="inputgender" class="col-md-2 control-label">
-	                    Gender</label>
-	                <div class="col-md-10 ">
-	                    <label>
-	                        <input type="radio" name="gender" />
-	                        Male
-	                    </label>
-	                    <label>
-	                        <input type="radio" name="gender" />
-	                        Female
-	                    </label>
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <label for="inputUsername" class="col-md-2 control-label">
-	                    Country</label>
+	                <label for="inputdirection" class="col-md-2 control-label">
+	                    Dirección</label>
 	                <div class="col-md-10">
-	                    <select name="" class="form-control">
-	                        <option value="">Australia</option>
-	                        <option value="">Canada</option>
-	                        <option value="">United Kingdom</option>
-	                        <option selected="" value="">USA</option>
-	                    </select>
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <label for="inputemail" class="col-md-2 control-label">
-	                    E-mail</label>
-	                <div class="col-md-10">
-	                    <input type="text" class="form-control" id="inputemail" placeholder="Enter E-mail......" />
+	                    <h:inputText class="form-control" id="inputdirection" p:placeholder="Introduzca su dirección..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <label for="inputphone" class="col-md-2 control-label">
-	                    Phone</label>
+	                    Teléfono</label>
 	                <div class="col-md-10">
-	                    <input type="text" class="form-control" id="inputphone" placeholder="Enter Phone......" />
+	                    <h:inputText class="form-control" id="inputphone" p:placeholder="Introduzca su teléfono de contacto..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
-	                <label for="inputpassword" class="col-md-2 control-label">
-	                    Password</label>
+	                <label for="inputdescription" class="col-md-2 control-label">
+	                    Descripción</label>
 	                <div class="col-md-10">
-	                    <input type="password" name="" class="form-control" value="" />
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <label for="inputconfirmpassword" class="col-md-2 control-label">
-	                    Confirm Password</label>
-	                <div class="col-md-10">
-	                    <input type="password" name="" class="form-control" value="" />
+	                    <h:inputTextarea rows="10" class="form-control" id="inputemail" p:placeholder="Introduzca una descripción..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <div class="col-md-8 col-md-offset-4">
 	                    <div class="checkbox">
-	                        <label>
-	                            I agree to the Terms of Use
+	                        <label style="width:100%;">
 	                            <input type="checkbox" />
+	                            I agree to the Terms of Use
 	                        </label>
 	                    </div>
 	                </div>
@@ -197,8 +170,8 @@
 	            <div class="row">
 	                <div class="form-group">
 	                    <div class="col-md-12">
-	                        <input type="submit" name="submit" value="Cancel" class="btn btn-default pull-right btn-primary" />
-	                        <input type="submit" name="submit" value="submit" class="btn btn-default pull-right btn-submit btn-success" />
+	                        <input type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary" />
+	                        <input type="submit" name="submit" value="Enviar" class="btn btn-default pull-right btn-submit btn-success" />
 	                    </div>
 	                </div>
 	            </div>
