@@ -1,10 +1,12 @@
 package com.entities;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Entity;
 
-public class Restaurante {
+public class Restaurante implements Serializable {
 	
-	public static final String TUTORIAL_ENTITY = "Restaurante";
+	public static final String RESTAURANTE_ENTITY = "Restaurante";
 	
 	public static final String NOMBRE = "nombre";
 	
@@ -16,7 +18,7 @@ public class Restaurante {
 	
 	public static final String DESCRIPCION = "descripcion";
 
-	private Entity entity = new Entity (TUTORIAL_ENTITY);
+	private Entity entity = new Entity (RESTAURANTE_ENTITY);
 	
 	// constructores
 	

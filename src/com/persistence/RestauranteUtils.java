@@ -46,7 +46,7 @@ public class RestauranteUtils {
 	}
 	
 	private static Query configureQuery () {
-		final Query query = new Query(Restaurante.TUTORIAL_ENTITY);
+		final Query query = new Query(Restaurante.RESTAURANTE_ENTITY);
 		Filter filtro = new FilterPredicate("nombre",
                 FilterOperator.NOT_EQUAL,
                 null);
