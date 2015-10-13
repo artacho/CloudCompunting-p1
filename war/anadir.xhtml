@@ -50,9 +50,10 @@
 			
 			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
 			          <ul class="nav navbar-nav">
-			            <li><h:link outcome="index.xhtml">Home</h:link></li>
+			            <li><h:link outcome="index.xhtml">Principal</h:link></li>
 			            <li class="active"><h:link>Añadir nuevo restaurante</h:link></li>
-			            <li><h:link>Contacta</h:link></li>
+			            <li><a href="#{identityBean.loginUrl}">Iniciar sesión</a></li>
+			            <!-- <li><h:link outcome="#{IdentityBean.logoutUrl}">Cerrar sesión</h:link></li> -->
 			          </ul>
 			        </div><!-- /.navbar-collapse -->
 			      </div>
