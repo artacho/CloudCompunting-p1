@@ -5,14 +5,39 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-		<style>
-			#map{
-				width: 500px;
-				height: 400px;
+	<style>
+		#map{
+			width: 500px;
+			height: 400px;
+		}
+	</style>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<!--
+	<h:outputScript library="js" name="https://maps.googleapis.com/maps/api/js"/>
+	<h:outputScript library="js" name="googleMapApi.js"/>
+    -->
+    <script>
+		function initialize() {
+			var mapCanvas = document.getElementById('map');
+			var mapOptions = {
+			  center: new google.maps.LatLng(36.7224853, -4.4206495,19),
+			  zoom: 17,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
-		</style>
-		<h:outputScript library="js" name="https://maps.googleapis.com/maps/api/js"/>
-		<h:outputScript library="js" name="googleMapApi.js"/>
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var latLng = new google.maps.LatLng(36.7224853,-4.4206495,19);
+			var marker = new google.maps.Marker({
+				position: latLng,
+			    map: map
+			});
+		}
+
+
+
+
+		
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
 </h:head>
 <h:body>
 		<div id="map">
