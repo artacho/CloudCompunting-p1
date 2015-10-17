@@ -1,5 +1,6 @@
 package com;
  
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -85,7 +86,22 @@ public class RestauranteBean implements Serializable {
 	
 	public String anadirRestaurante(){
 		RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion);
+		limpiarCampos();
 		return "/index.xhtml";
 	}
+	
+	public void limpiarCampos(){
+		this.email = "";
+		this.direccion = "";
+		this.descripcion = "";
+		this.nombre = "";
+		this.telefono = "";
+	}
+	
+	@PostConstruct
+	public void inicializarDatos(){
+		limpiarCampos();
+	}
+	
  
 }
