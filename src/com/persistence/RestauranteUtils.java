@@ -21,7 +21,7 @@ public class RestauranteUtils {
 	public static void insert(String email, String nombre, String direccion, String telefono, String descripcion) {
 		
 		final DatastoreService datastoreService = DSF.getDatastoreService();
-		final Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion);		
+		Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion);		
 		datastoreService.put(restaurante.getEntity());
 		
 	}

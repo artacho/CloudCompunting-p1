@@ -87,6 +87,7 @@ public class RestauranteBean implements Serializable {
 	public String anadirRestaurante(){
 		RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion);
 		limpiarCampos();
+		cargarRestaurantes();
 		return "/index.xhtml";
 	}
 	
@@ -98,9 +99,14 @@ public class RestauranteBean implements Serializable {
 		this.telefono = "";
 	}
 	
+	public void cargarRestaurantes(){
+		restaurantes = RestauranteUtils.getEntries();
+	}
+	
 	@PostConstruct
 	public void inicializarDatos(){
 		limpiarCampos();
+		cargarRestaurantes();
 	}
 	
  

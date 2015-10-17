@@ -3,7 +3,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
  
 <h:head>
 	<title>Tapalia. Home.</title>
@@ -66,140 +68,25 @@
 			<div class="container col-md-8" id="contenido">
 				<section id="pricePlans">
 					<ul id="plans">
-						<li class="plan">
+						<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
+							<li class="plan">
 							<ul class="planContainer">
-								<li class="title"><h2>Bar Casa Pepe</h2></li>
-								<li class="price"><p>C/Avenida Andalucía 12</p></li>
+								<li class="title"><h2>#{item.NOMBRE}</h2></li>
+								<li class="price"><p>#{item.DIRECCION}</p></li>
 								<li>
 									<ul class="options">
-										<li>casapepe@tapalia.com <span></span></li>
-										<li>68721525</li>
-										<li>Bar Casa Pepe, tu tapería de siempre al precio de siempre</li>
+										<li>#{item.EMAIL}<span></span></li>
+										<li>#{item.TELEFONO}</li>
+										<li>#{item.DESCRIPCION}</li>
 									</ul>
 								</li>
 								<li class="button"><a href="#">Purchase</a></li>
 							</ul>
+							
 						</li>
+						</ui:repeat>
 			
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2 class="bestPlanTitle">Plan 2</h2></li>
-								<li class="price"><p class="bestPlanPrice">$20/month</p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a class="bestPlanButton" href="#">Purchase</a></li>
-							</ul>
-						</li>
-			
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 3</h2></li>
-								<li class="price"><p>$30/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
-			
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 4</h2></li>
-								<li class="price"><p>$40/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul id="plans">
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 4</h2></li>
-								<li class="price"><p>$40/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
 						
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 4</h2></li>
-								<li class="price"><p>$40/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
-						
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 4</h2></li>
-								<li class="price"><p>$40/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
-						
-						<li class="plan">
-							<ul class="planContainer">
-								<li class="title"><h2>Plan 4</h2></li>
-								<li class="price"><p>$40/<span>month</span></p></li>
-								<li>
-									<ul class="options">
-										<li>2x <span>option 1</span></li>
-										<li>Free <span>option 2</span></li>
-										<li>Unlimited <span>option 3</span></li>
-										<li>Unlimited <span>option 4</span></li>
-										<li>1x <span>option 5</span></li>
-									</ul>
-								</li>
-								<li class="button"><a href="#">Purchase</a></li>
-							</ul>
-						</li>
 					</ul> <!-- End ul#plans -->
 				</section>
 			</div>
