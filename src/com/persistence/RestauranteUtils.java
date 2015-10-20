@@ -44,7 +44,9 @@ public class RestauranteUtils {
 		final String direccion = (String) entity.getProperty(Restaurante.DIRECCION);
 		final String telefono = (String) entity.getProperty(Restaurante.TELEFONO);
 		final String descripcion = (String) entity.getProperty(Restaurante.DESCRIPCION);
-		return new Restaurante(email, nombre, direccion, telefono, descripcion);
+		Restaurante res = new Restaurante(email, nombre, direccion, telefono, descripcion);
+		res.setEntity(entity);
+		return res;
 	}
 	
 	private static Query configureQuery () {
@@ -94,6 +96,19 @@ public class RestauranteUtils {
 			return true;
 		}else{
 			return false;
+		}
+	}
+	
+	public static void updateRestaurante(Restaurante restaurante){
+		if(restaurante != null){
+			Restaurante res = getRestaurante(restaurante.getEMAIL());
+			res.setNOMBRE(restaurante.getNOMBRE());
+			res.setDIRECCION(restaurante.getDIRECCION());
+			res.setDESCRIPCION(restaurante.getDESCRIPCION());
+			res.setEMAIL(restaurante.getEMAIL());
+			res.setTELEFONO(restaurante.getTELEFONO());
+			final DatastoreService ds = DSF.getDatastoreService();
+			ds.put(res.getEntity());
 		}
 	}
 	

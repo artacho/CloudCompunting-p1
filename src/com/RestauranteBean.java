@@ -3,6 +3,8 @@ package com;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+
 import com.entities.Restaurante;
 import com.persistence.RestauranteUtils;
 import java.io.Serializable;
@@ -19,6 +21,8 @@ public class RestauranteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Restaurante> restaurantes;
+	
+	private Restaurante restauranteSeleccionado;
 	
 	private String email;
 	
@@ -82,6 +86,14 @@ public class RestauranteBean implements Serializable {
 		this.restaurantes = restaurantes;
 	}
 	
+	public Restaurante getRestauranteSeleccionado() {
+		return restauranteSeleccionado;
+	}
+
+	public void setRestauranteSeleccionado(Restaurante restauranteSeleccionado) {
+		this.restauranteSeleccionado = restauranteSeleccionado;
+	}
+
 	public String anadirRestaurante(){
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
 			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion);
@@ -103,6 +115,25 @@ public class RestauranteBean implements Serializable {
 		}
 	}
 	
+	public String modificarRestaurante(){
+		email = restauranteSeleccionado.getEMAIL();
+		nombre = restauranteSeleccionado.getNOMBRE();
+		direccion = restauranteSeleccionado.getDIRECCION();
+		descripcion = restauranteSeleccionado.getDESCRIPCION();
+		telefono = restauranteSeleccionado.getTELEFONO();
+		return "/modificar.xhtml";
+	}
+	
+	public String modificar(){
+		restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
+		restauranteSeleccionado.setNOMBRE(nombre);
+		restauranteSeleccionado.setDIRECCION(direccion);
+		restauranteSeleccionado.setDESCRIPCION(descripcion);
+		restauranteSeleccionado.setTELEFONO(telefono);
+		RestauranteUtils.updateRestaurante(restauranteSeleccionado);
+		cargarRestaurantes();
+		return "index.xhtml";
+	}
 	
 	public void limpiarCampos(){
 		this.email = "";
@@ -110,6 +141,7 @@ public class RestauranteBean implements Serializable {
 		this.descripcion = "";
 		this.nombre = "";
 		this.telefono = "";
+		restauranteSeleccionado = null;
 	}
 	
 	public void cargarRestaurantes(){
@@ -121,6 +153,9 @@ public class RestauranteBean implements Serializable {
 	public void inicializarDatos(){
 		limpiarCampos();
 		cargarRestaurantes();
+		if(email != null){
+			restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
+		}
 	}
 	
  

@@ -6,9 +6,7 @@ import com.google.appengine.api.datastore.Entity;
 
 public class Restaurante implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public static String RESTAURANTE_ENTITY = "Restaurante";
@@ -42,7 +40,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public void setNOMBRE(String nOMBRE) {
-		NOMBRE = nOMBRE;
+		entity.setProperty(NOMBRE, nOMBRE);
 	}
 
 	public String getDIRECCION() {
@@ -50,7 +48,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public void setDIRECCION(String dIRECCION) {
-		DIRECCION = dIRECCION;
+		entity.setProperty(DIRECCION, dIRECCION);
 	}
 
 	public String getEMAIL() {
@@ -58,7 +56,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
+		entity.setProperty(EMAIL, eMAIL);
 	}
 
 	public String getTELEFONO() {
@@ -66,7 +64,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public void setTELEFONO(String tELEFONO) {
-		TELEFONO = tELEFONO;
+		entity.setProperty(TELEFONO, tELEFONO);
 	}
 
 	public String getDESCRIPCION() {
@@ -74,7 +72,7 @@ public class Restaurante implements Serializable {
 	}
 
 	public void setDESCRIPCION(String dESCRIPCION) {
-		DESCRIPCION = dESCRIPCION;
+		entity.setProperty(DESCRIPCION, dESCRIPCION);
 	}
 
 	public Entity getEntity() {
