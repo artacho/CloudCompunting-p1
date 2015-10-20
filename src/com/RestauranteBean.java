@@ -5,11 +5,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.entities.Restaurante;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.persistence.DSF;
 import com.persistence.RestauranteUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
  
 @ManagedBean
@@ -29,9 +28,7 @@ public class RestauranteBean implements Serializable {
 	private String telefono;
 	
 	private String descripcion;
-	
-	
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -100,6 +97,7 @@ public class RestauranteBean implements Serializable {
 	}
 	
 	public void cargarRestaurantes(){
+		restaurantes = new ArrayList<Restaurante>();
 		restaurantes = RestauranteUtils.getEntries();
 	}
 	
