@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<style>
+	    html, body {
+	        height: 100%;
+	        margin: 0;
+	        padding: 0;
+	    }
+	    #map {
+	    	height: 100%;
+	    }
+		#floating-panel {
+			position: absolute;
+			top: 10px;
+			left: 25%;
+			z-index: 5;
+			background-color: #fff;
+			padding: 5px;
+			border: 1px solid #999;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			line-height: 30px;
+			padding-left: 10px;
+		}
+	</style>
+
+    <script>
+	    function initMap() {
+	    	var map = new google.maps.Map(document.getElementById('map'), {
+	    		zoom: 15,
+	    	    center: {lat: -34.397, lng: 150.644}
+	    	});
+	    	var geocoder = new google.maps.Geocoder();
+	
+	    	document.getElementById('submit').addEventListener('click', function() {
+	    		geocodeAddress(geocoder, map);
+	    	});
+		}
+	
+	    function geocodeAddress(geocoder, resultsMap) {
+	    	var address = document.getElementById('address').value;
+	    	geocoder.geocode({'address': address}, function(results, status) {
+		    	if (status === google.maps.GeocoderStatus.OK) {
+		    		resultsMap.setCenter(results[0].geometry.location);
+		    	    var marker = new google.maps.Marker({
+		    	    	map: resultsMap,
+		    	        position: results[0].geometry.location
+		    	    });
+		    	} else {
+		    		alert('Geocode was not successful for the following reason: ' + status);
+		    	}
+	    	});
+	    }
+	</script>
+</h:head>
+<h:body>
+
+	<div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW" />
+      <input id="submit" type="button" value="Geocode" />
+    </div>
+	<div id="map">
+			
+	</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXTrMKew-jSEDgOAl0LoWiUIKfiqOidHQ&amp;signed_in=true&amp;callback=initMap" async="defer" />
+</h:body>
+</html>
+<!-- AIzaSyCXTrMKew-jSEDgOAl0LoWiUIKfiqOidHQ -->
