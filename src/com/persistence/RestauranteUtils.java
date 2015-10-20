@@ -18,12 +18,11 @@ public class RestauranteUtils {
 	
 	private static final int FETCH_MAX_RESULTS = 10;
 	
-	public static void insert(String email, String nombre, String direccion, String telefono, String descripcion) {
-		
+	public static Restaurante insert(String email, String nombre, String direccion, String telefono, String descripcion) {
 		final DatastoreService datastoreService = DSF.getDatastoreService();
 		Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion);		
 		datastoreService.put(restaurante.getEntity());
-		
+		return restaurante;
 	}
 	
 	public static List<Restaurante> getEntries() {
@@ -61,5 +60,42 @@ public class RestauranteUtils {
 	private static FetchOptions configureFetchOptions () {
 		return Builder.withLimit(FETCH_MAX_RESULTS);	
 	}
+	
+	public static boolean existe(String email){
+		return getRestaurante(email)!=null;
+	}
+	
+	public static Restaurante getRestaurante(String email){
+		Restaurante res = null;
+		final DatastoreService ds = DSF.getDatastoreService();
+		final Query query = new Query(Restaurante.RESTAURANTE_ENTITY);
+		Filter filtro = new FilterPredicate("email",
+                FilterOperator.EQUAL,
+                email);
+		query.setFilter(filtro);
+		Entity entity = ds.prepare(query).asSingleEntity();
+		if(entity != null){
+			res = convertEntityToRestaurante(entity);
+		}	
+		return res;
+	}
+	
+	public static boolean removeRestaurante(String email){
+		Restaurante restaurante = getRestaurante(email);
+		if(restaurante != null){
+			final DatastoreService ds = DSF.getDatastoreService();
+			final Query query = new Query(Restaurante.RESTAURANTE_ENTITY);
+			Filter filtro = new FilterPredicate("email",
+	                FilterOperator.EQUAL,
+	                email);
+			query.setFilter(filtro);
+			Entity entity = ds.prepare(query).asSingleEntity();
+			ds.delete(entity.getKey());
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 
 }

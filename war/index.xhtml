@@ -6,21 +6,21 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
- 
+
 <h:head>
 	<title>Tapalia. Home.</title>
 	<!-- Latest compiled and minified CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
-	
+
 	<!-- Optional theme -->
 	<h:outputStylesheet library="css" name="bootstrap-theme.min.css"></h:outputStylesheet>
-	
+
 	<!-- Own theme -->
 	<h:outputStylesheet library="css" name="propio.css"></h:outputStylesheet>
-	
+
 	<!-- Latest compiled and minified JQuery -->
 	<h:outputScript library="js" name="jquery-2.1.4.min.js" />
-		
+
 	<!-- Latest compiled and minified JavaScript -->
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
@@ -28,48 +28,52 @@
 	<div class="container col-md-12" id="header">
 		<!-- Header -->
 		<div id="header-title">
-			<h1>Tapalia</h1><h3>Tu ruta de tapas Malagueña</h3><h4>Ayuntamiento de Málaga</h4>
+			<h1>Tapalia</h1>
+			<h3>Tu ruta de tapas Malagueña</h3>
+			<h4>Ayuntamiento de Málaga</h4>
 		</div>
-		
+
 		<!-- Menu -->
 		<div class="col-md-12">
 			<div class="col-md-2"></div>
 			<div class="container col-md-8">
 				<div class="container-fluid">
-			        <div class="navbar-header">
-			          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
-			            <span class="sr-only">Toggle navigation</span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			          </button>
-			          <a class="navbar-brand"><h:graphicImage library="images" name="logo.png" id="logo" /></a>
-			        </div>
-			
-			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-			          <ul class="nav navbar-nav">
-			            <li class="active"><h:link>Principal</h:link></li>
-			            <li><h:link outcome="anadir">Añadir nuevo restaurante</h:link></li>
-			            <li><h:link outcome="ejemplo">Prueba</h:link></li>
-			            <li><a href="#{identityBean.loginUrl}">Iniciar sesión</a></li>
-			            <!-- <li><h:link outcome="#{IdentityBean.logoutUrl}">Cerrar sesión</h:link></li> -->			            
-			          </ul>
-			        </div><!-- /.navbar-collapse -->
-			      </div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand"><h:graphicImage library="images"
+								name="logo.png" id="logo" /></a>
+					</div>
+
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-6">
+						<ul class="nav navbar-nav">
+							<li class="active"><h:link>Principal</h:link></li>
+							<li><h:link outcome="anadir">Añadir nuevo restaurante</h:link></li>
+							<li><h:link outcome="ejemplo">Prueba</h:link></li>
+							<!-- <li><h:link outcome="#{IdentityBean.logoutUrl}">Cerrar sesión</h:link></li> -->
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-		
+
 		<!-- left pane -->
 		<div class="col-md-12">
-			<div class="col-md-2">
-			</div>
+			<div class="col-md-2"></div>
 			<!-- content pane -->
 			<div class="container col-md-8" id="contenido">
 				<section id="pricePlans">
-					<ul id="plans">
-						<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
-							<li class="plan">
+				<ul id="plans">
+					<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
+						<li class="plan">
 							<ul class="planContainer">
 								<li class="title"><h2>#{item.NOMBRE}</h2></li>
 								<li class="price"><p>#{item.DIRECCION}</p></li>
@@ -82,17 +86,16 @@
 								</li>
 								<li class="button"><a href="#">Purchase</a></li>
 							</ul>
-							
+
 						</li>
-						</ui:repeat>
-			
-						
-					</ul> <!-- End ul#plans -->
-				</section>
+					</ui:repeat>
+
+
+				</ul>
+				<!-- End ul#plans --> </section>
 			</div>
 			<!-- right pane -->
-			<div class="col-md-2">
-			</div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
 </h:body>

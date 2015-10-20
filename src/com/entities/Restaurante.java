@@ -6,7 +6,10 @@ import com.google.appengine.api.datastore.Entity;
 
 public class Restaurante implements Serializable {
 
-	private static final long serialVersionUID = 7162224867946927281L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public static String RESTAURANTE_ENTITY = "Restaurante";
 	
