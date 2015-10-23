@@ -23,8 +23,61 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<h:outputScript library="js" name="bootstrap.min.js" />
+	
+	
+	<style>
+	    #map {
+
+	    	height: 200px;
+	    }
+	</style>
+	
+	<script>
+	    function initMap() {
+	    	var map = new google.maps.Map(document.getElementById('map'), {
+	    		zoom: 13
+	    	});
+	    	var geocoder = new google.maps.Geocoder();
+	    	geocodeCenter(geocoder, map);
+	    	
+	    	
+	    	
+	    	<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
+				geocodeAddress(geocoder,map,'#{item.DIRECCION}');
+			</ui:repeat>
+	    	
+	    	
+		}
+	
+	    function geocodeCenter(geocoder, resultsMap) {
+	    	var address = "Málaga";
+	    	geocoder.geocode({'address': address}, function(results, status) {
+		    	if (status === google.maps.GeocoderStatus.OK) {
+		    		resultsMap.setCenter(results[0].geometry.location);
+		    	} else {
+		    		alert('Geocode was not successful for the following reason: ' + status);
+		    	}
+	    	});
+	    }
+	    
+	    function geocodeAddress(geocoder, resultsMap, address)
+	    {
+	    	geocoder.geocode({'address': address}, function(results, status) {
+		    	if (status === google.maps.GeocoderStatus.OK) {
+		    		var marker = new google.maps.Marker({
+				    	map: resultsMap,
+				    	position: results[0].geometry.location
+				    });
+		    	} else {
+		    		alert('Geocode was not successful for the following reason: ' + status);
+		    	}
+	    	});
+	    }
+	</script>
+	
 </h:head>
 <h:body>
+	<div class="container col-md-12" id="map"></div>
 	<div class="container col-md-12" id="header">
 		<!-- Header -->
 		<div id="header-title">
@@ -105,5 +158,8 @@
 			<div class="col-md-2"></div>
 		</div>
 	</div>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXTrMKew-jSEDgOAl0LoWiUIKfiqOidHQ&amp;signed_in=true&amp;callback=initMap" async="defer" />
+	
 </h:body>
 </html>
