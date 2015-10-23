@@ -1,16 +1,38 @@
 #header{
+	position: absolute;
+	left: 10px;
+    top: 10px;
 	background-color: #123233;
 	color:white;
 	height: 145px;
+	width: auto;
+	border-radius: 25px;
+	
 }
 
 #header-title{
-	margin-left: 20%
+	margin: 5px;
+}
+
+#map {
+	height: 200px;
 }
 
 #contenido{
 
 	min-height: 200px;
+}
+
+#menu{
+	background-color: #123233;
+}
+
+#menu a{
+	color:white;
+}
+
+#menu a:hover{
+	color: #123233;
 }
 
 #logo{
