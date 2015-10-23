@@ -1,6 +1,12 @@
 package com;
  
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +15,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.entities.Restaurante;
+import com.flickr.Flickr;
+import com.google.gson.Gson;
 import com.persistence.RestauranteUtils;
  
 @ManagedBean
@@ -24,6 +32,8 @@ public class RestauranteBean implements Serializable {
 	
 	private Restaurante restauranteSeleccionado;
 	
+	private Restaurante restauranteDetalles;
+	
 	private String email;
 	
 	private String nombre;
@@ -33,6 +43,8 @@ public class RestauranteBean implements Serializable {
 	private String telefono;
 	
 	private String descripcion;
+	
+	private String urlFoto;
 
 	public String getEmail() {
 		return email;
@@ -92,6 +104,22 @@ public class RestauranteBean implements Serializable {
 
 	public void setRestauranteSeleccionado(Restaurante restauranteSeleccionado) {
 		this.restauranteSeleccionado = restauranteSeleccionado;
+	}
+	
+	public Restaurante getRestauranteDetalles() {
+		return restauranteDetalles;
+	}
+
+	public void setRestauranteDetalles(Restaurante restauranteDetalles) {
+		this.restauranteDetalles = restauranteDetalles;
+	}
+	
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
 	}
 
 	public String anadirRestaurante(){
@@ -161,6 +189,43 @@ public class RestauranteBean implements Serializable {
 	public static boolean modulo(int numero, int modulo)
 	{
 		return numero%4 == 0;
+	}
+	
+	public String consultarRestaurante () {
+		Flickr flickr = null;
+		try {
+			String reply = "", line = "";
+			URL url = new URL("https://api.flickr.com/services/rest?method=flickr.photos.search&format=json&api_key=a6044c4da2ccca4c01b958d560bc4c77&tags=malaga&per_page=1");
+			URLConnection urlConnection = url.openConnection();
+			urlConnection.setConnectTimeout(10000);
+			InputStream input = urlConnection.getInputStream();
+			BufferedReader reader = new BufferedReader (new InputStreamReader(input));
+			while ((line = reader.readLine()) != null) {
+				reply += line;
+			}
+			reader.close();
+			reply = reply.replace("jsonFlickrApi(", "");
+			reply = reply.substring(0,reply.length()-1);
+			Gson gson = new Gson();
+			flickr = gson.fromJson(reply, Flickr.class);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+		String secret = flickr.getPhotos().getPhoto().get(0).getSecret();
+		Integer farm = flickr.getPhotos().getPhoto().get(0).getFarm();
+		String id = flickr.getPhotos().getPhoto().get(0).getId();
+		String server = flickr.getPhotos().getPhoto().get(0).getServer();
+		
+		urlFoto = "https://farm"+farm+".staticflickr.com/"+server+"/"+id+"_"+secret+".jpg";
+		
+		email = restauranteDetalles.getEMAIL() ;
+		nombre = restauranteDetalles.getNOMBRE();
+		direccion = restauranteDetalles.getDIRECCION();
+		telefono = restauranteDetalles.getTELEFONO();
+		descripcion = restauranteDetalles.getDESCRIPCION();
+		return "./restaurante.xhtml";
 	}
  
 }

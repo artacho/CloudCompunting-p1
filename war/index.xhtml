@@ -154,6 +154,10 @@
 											<f:setPropertyActionListener value="#{item}"
 												target="#{restauranteBean.restauranteSeleccionado}" />
 										</h:commandLink></li>
+										
+										<li class="button"><h:commandLink value="Detalles" styleClass="btn" action="#{restauranteBean.consultarRestaurante}">
+										<f:setPropertyActionListener value="#{item}" target="#{restauranteBean.restauranteDetalles}"/>
+									</h:commandLink></li>
 								</ul>
 							</li>
 							<!-- 

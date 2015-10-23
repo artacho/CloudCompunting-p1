@@ -66,13 +66,13 @@
 				<ul id="plans" class="noResize">
 					<li class="plan noResize" style="width:100%">
 						<ul class="planContainer noResize">
-							<li class="title"><h2>Bar Casa Pepe</h2></li>
-							<li class="price"><p>C/Avenida Andalucía 12</p></li>
+							<li class="title"><h2>#{restauranteBean.nombre}</h2></li>
+							<li class="price"><p>#{restauranteBean.direccion}</p></li>
 							<li>
 								<ul class="options">
-									<li>casapepe@tapalia.com <span></span></li>
-									<li>68721525</li>
-									<li>Bar Casa Pepe, tu tapería de siempre al precio de siempre</li>
+									<li>#{restauranteBean.email}</li>
+									<li>#{restauranteBean.telefono}</li>
+									<li>#{restauranteBean.descripcion}</li>
 								</ul>
 							</li>
 							<li class="price" id="map"></li>
@@ -81,7 +81,9 @@
 					</li>
 				</ul>
 			</section>
-			<div class="col-sm-3 col-md-3 col-lg-3"></div>
+			<div class="col-sm-3 col-md-3 col-lg-3">
+				<h:graphicImage value="#{restauranteBean.urlFoto}" />
+			</div>
 		</div>
 	</div>
 
