@@ -158,7 +158,7 @@ public class RestauranteBean implements Serializable {
 	
 	public String eliminarRestaurante(){
 		// Obtiene el restaurante a partir del email
-		Restaurante res = RestauranteUtils.getRestaurante(email);
+		Restaurante res = RestauranteUtils.getRestaurante(restauranteDetalles.getEMAIL());
 		// Comprueba que el restaurante exista
 		if(res !=null){
 			// Elimina el restaurante del Datastore
