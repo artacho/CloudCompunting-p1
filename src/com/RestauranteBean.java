@@ -4,15 +4,18 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.entities.Restaurante;
 import com.persistence.RestauranteUtils;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
  
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class RestauranteBean implements Serializable {
  
 	/**
@@ -33,6 +36,8 @@ public class RestauranteBean implements Serializable {
 	private String telefono;
 	
 	private String descripcion;
+	
+	// Getters & Setters
 
 	public String getEmail() {
 		return email;
@@ -93,11 +98,26 @@ public class RestauranteBean implements Serializable {
 	public void setRestauranteSeleccionado(Restaurante restauranteSeleccionado) {
 		this.restauranteSeleccionado = restauranteSeleccionado;
 	}
+	
+	public void goAddPage() throws IOException{
+		limpiarCampos();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("anadir.xhtml");
+	}
+	
+	public void goIndex() throws IOException{
+		limpiarCampos();
+		cargarRestaurantes();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+	}
 
 	public String anadirRestaurante(){
+		// comprueba que el email del restaurante no exista
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
+			// almacena el restaurante en el Datastore
 			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion);
+			// limpia los campos del formulario
 			limpiarCampos();
+			// Añade el restaurante a la lista del ManagedBean
 			restaurantes.add(res);
 			return "/index.xhtml";
 		}
@@ -105,9 +125,13 @@ public class RestauranteBean implements Serializable {
 	}
 	
 	public String eliminarRestaurante(){
+		// Obtiene el restaurante a partir del email
 		Restaurante res = RestauranteUtils.getRestaurante(email);
+		// Comprueba que el restaurante exista
 		if(res !=null){
+			// Elimina el restaurante del Datastore
 			RestauranteUtils.removeRestaurante(res.getEMAIL());
+			// Elimina el restaurante de la lista del ManagedBean
 			restaurantes.remove(res);
 			return "/index.xhtml";
 		}else{
@@ -115,7 +139,8 @@ public class RestauranteBean implements Serializable {
 		}
 	}
 	
-	public String modificarRestaurante(){
+	public String cargaFormularioModificarRestaurante(){
+		// Carga los datos del restaurante seleccionado en el formulario
 		email = restauranteSeleccionado.getEMAIL();
 		nombre = restauranteSeleccionado.getNOMBRE();
 		direccion = restauranteSeleccionado.getDIRECCION();
@@ -124,15 +149,26 @@ public class RestauranteBean implements Serializable {
 		return "/modificar.xhtml";
 	}
 	
-	public String modificar(){
+	public void modificarRestaurante() throws IOException{
+		// Obtiene el restaurante seleccionado
 		restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
-		restauranteSeleccionado.setNOMBRE(nombre);
-		restauranteSeleccionado.setDIRECCION(direccion);
-		restauranteSeleccionado.setDESCRIPCION(descripcion);
-		restauranteSeleccionado.setTELEFONO(telefono);
-		RestauranteUtils.updateRestaurante(restauranteSeleccionado);
-		cargarRestaurantes();
-		return "index.xhtml";
+		System.out.println("Email:"+email);
+		if(restauranteSeleccionado!= null){
+			restaurantes.remove(restaurantes.indexOf(restauranteSeleccionado));
+			// modifica los campos del restaurante
+			restauranteSeleccionado.setNOMBRE(nombre);
+			restauranteSeleccionado.setDIRECCION(direccion);
+			restauranteSeleccionado.setDESCRIPCION(descripcion);
+			restauranteSeleccionado.setTELEFONO(telefono);
+			// actualiza el restaurante en el Datastore
+			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
+			// añade el restaurante modificado a la lista del ManagedBean
+			restaurantes.add(restauranteSeleccionado);
+			limpiarCampos();
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		}else{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("modificar.xhtml");
+		}
 	}
 	
 	public void limpiarCampos(){

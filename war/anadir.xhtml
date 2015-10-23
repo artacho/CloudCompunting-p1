@@ -89,51 +89,7 @@
 	                    <h:inputText type="text" value="#{restauranteBean.nombre}"  class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
 	                </div>
 	            </div>
-	            <div class="form-group">
-	                <label for="inputsurname" class="col-md-2 control-label">
-	                    Apellidos</label>
-	                <div class="col-md-10">
-	                    <h:inputText class="form-control"  id="inputsurname" p:placeholder="Introduzca sus apellidos..." />
-	                </div>
-	            </div>
-	            <!--
-	            <div class="form-group">
-	                <label for="inputdateofbirth" class="col-md-2 control-label">
-	                    Date of Birth</label>
-	                <div class="col-md-10">
-	                    <div class="row">
-	                        <div class="col-md-5">
-	                            <select class="form-control" name="">
-	                                <option value="">January</option>
-	                                <option value="">February</option>
-	                                <option value="">March</option>
-	                                <option value="">April</option>
-	                                <option selected="" value="">May</option>
-	                            </select>
-	                        </div>
-	                        <div class="col-md-3">
-	                            <select name="" class="form-control">
-	                                <option value="">1</option>
-	                                <option value="">2</option>
-	                                <option value="">3</option>
-	                                <option value="">4</option>
-	                                <option selected="" value="">5</option>
-	                            </select>
-	                        </div>
-	                        <div class="col-md-4">
-	                            <select name="" class="form-control">
-	                                <option value="">1980</option>
-	                                <option value="">1981</option>
-	                                <option value="">1982</option>
-	                                <option value="">1983</option>
-	                                <option value="">1984</option>
-	                                <option selected="" value="">1985</option>
-	                            </select>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	            -->
+
 	            <div class="form-group">
 	                <label for="inputdirection" class="col-md-2 control-label">
 	                    Dirección</label>
@@ -170,8 +126,7 @@
 	            <div class="row">
 	                <div class="form-group">
 	                    <div class="col-md-12">
-	                        <input type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary" />
-	                        <!--  <input  name="submit" value="Enviar" class="btn btn-default pull-right btn-submit btn-success" />-->
+	                        <h:link type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary"  outcome="index"></h:link>
 	                        <h:commandButton type="submit"  value="Enviar" class="btn btn-default pull-right btn-submit btn-success" action="#{restauranteBean.anadirRestaurante}"/>
 	                    </div>
 	                </div>

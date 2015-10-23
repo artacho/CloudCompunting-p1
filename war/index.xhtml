@@ -52,14 +52,18 @@
 
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-6">
+						<h:form>
 						<ul class="nav navbar-nav">
-							<li class="active"><h:link>Principal</h:link></li>
-							<li><h:link outcome="anadir">Añadir nuevo restaurante</h:link></li>
+							
+							<li class="active"><h:link outcome="index" value="Principal" /></li>
+							<li><h:commandLink action="#{restauranteBean.goAddPage}" value="Añadir nuevo restaurante" /></li>
 							<li><h:link outcome="restaurante">Restaurante</h:link></li>
 							<li><h:link outcome="ejemplo">Prueba</h:link></li>
 							<li><h:link outcome="ejemploURL">PruebaURL</h:link></li>
 							<!-- <li><h:link outcome="#{IdentityBean.logoutUrl}">Cerrar sesión</h:link></li> -->
+							
 						</ul>
+						</h:form>	
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -89,10 +93,10 @@
 									</li>
 
 									<li class="button"><h:commandLink styleClass="btn"
-											action="#{restauranteBean.modificarRestaurante}">
+											action="#{restauranteBean.cargaFormularioModificarRestaurante}">
 											<f:setPropertyActionListener value="#{item}"
 												target="#{restauranteBean.restauranteSeleccionado}" />
-										</h:commandLink></li>
+										Modificar</h:commandLink></li>
 								</ul>
 
 							</li>

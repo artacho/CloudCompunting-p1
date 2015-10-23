@@ -49,12 +49,14 @@
 			        </div>
 			
 			        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+			          <h:form>
 			          <ul class="nav navbar-nav">
-			            <li><h:link outcome="index.xhtml">Principal</h:link></li>
-			            <li class="active"><h:link>Añadir nuevo restaurante</h:link></li>
+			            <li class="active"><h:commandLink action="#{restauranteBean.goIndex}" value="Principal" /></li>
+							<li><h:commandLink action="#{restauranteBean.goAddPage}" value="Añadir nuevo restaurante" /></li>
 			            <li><a href="#{identityBean.loginUrl}">Iniciar sesión</a></li>
 			            <!-- <li><h:link outcome="#{IdentityBean.logoutUrl}">Cerrar sesión</h:link></li> -->
 			          </ul>
+			          </h:form>
 			        </div><!-- /.navbar-collapse -->
 			      </div>
 			</div>
@@ -86,14 +88,7 @@
 	                <label for="inputname" class="col-md-2 control-label">
 	                    Nombre</label>
 	                <div class="col-md-10">
-	                    <h:inputText type="text" value="#{restauranteBean.nombre}"  class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <label for="inputsurname" class="col-md-2 control-label">
-	                    Apellidos</label>
-	                <div class="col-md-10">
-	                    <h:inputText class="form-control"  id="inputsurname" p:placeholder="Introduzca sus apellidos..." />
+	                    <h:inputText  type="text" value="#{restauranteBean.nombre}"  class="form-control" id="inputname" p:placeholder="Introduzca su nombre..." />
 	                </div>
 	            </div>
 	            <div class="form-group">
@@ -132,9 +127,11 @@
 	            <div class="row">
 	                <div class="form-group">
 	                    <div class="col-md-12">
-	                        <input type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary" />
+	                        <!--  <input type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary" />-->
+	                        
+	                        <h:link type="submit" name="submit" value="Cancelar" class="btn btn-default pull-right btn-primary"  outcome="index"></h:link>
 	                        <!--  <input  name="submit" value="Enviar" class="btn btn-default pull-right btn-submit btn-success" />-->
-	                        <h:commandButton type="submit"  value="Enviar" class="btn btn-default pull-right btn-submit btn-success" action="#{restauranteBean.modificar}"/>
+	                        <h:commandButton type="submit"  value="Enviar" class="btn btn-default pull-right btn-submit btn-success" action="#{restauranteBean.modificarRestaurante}"/>
 	                    </div>
 	                </div>
 	            </div>

@@ -63,6 +63,7 @@
 		<div class="container col-md-12 col-lg-12 col-sm-12" id="restauranteIndividual">
 			<div class="col-sm-3 col-md-3 col-lg-3"></div>
 			<section id="pricePlans" class="col-sm-6 col-md-6 col-lg-6 noResize">
+			<h:form>
 				<ul id="plans" class="noResize">
 					<li class="plan noResize" style="width:100%">
 						<ul class="planContainer noResize">
@@ -76,10 +77,17 @@
 								</ul>
 							</li>
 							<li class="price" id="map"></li>
+							<li class="button">
+							<h:commandLink styleClass="btn"
+											action="#{restauranteBean.eliminarRestaurante}">
+										Eliminar</h:commandLink>
+							</li>
 							<li class="button"><a href="#">Atrás</a></li>
+							
 						</ul>
 					</li>
 				</ul>
+				</h:form>
 			</section>
 			<div class="col-sm-3 col-md-3 col-lg-3"></div>
 		</div>

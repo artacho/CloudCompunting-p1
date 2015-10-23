@@ -83,6 +83,19 @@ public class Restaurante implements Serializable {
 		this.entity = entity;
 	}
 	
+	@Override
+	public boolean equals(Object r) {
+		if (r == null) return false;
+	    if (r == this) return true;
+	    if (!(r instanceof Restaurante))return false;
+	    if (((Restaurante)r).getEMAIL().equals(this.getEMAIL()))return true;
+	    else return false;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return this.getEMAIL().hashCode();
+	  }
 	
 
 }
