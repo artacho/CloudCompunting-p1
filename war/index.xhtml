@@ -126,9 +126,17 @@
 			<!-- content pane -->
 			<div class="container col-md-8" id="contenido">
 				<section id="pricePlans">
-				<ul id="plans">
+					<!-- esto hay que quitarlo y ponerlo cada cuatro iteraciones -->
+					<ul id="plans">
 					<h:form>
-						<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
+						<c:set var="entrada" value='&lt;ul id=&quot;plans&quot;&gt;' />
+						<c:set var="cierre" value='&lt;/ul&gt;' />
+						<ui:repeat value="#{restauranteBean.restaurantes}" var="item" varStatus="iteracion">
+							<!-- 
+							<c:if test="#{iteracion.index%4 == 0}">
+								${entrada}
+							</c:if>
+							-->
 							<li class="plan">
 								<ul class="planContainer">
 									<li class="title"><h2>#{item.NOMBRE}</h2></li>
@@ -147,11 +155,15 @@
 												target="#{restauranteBean.restauranteSeleccionado}" />
 										</h:commandLink></li>
 								</ul>
-
 							</li>
+							<!-- 
+							<c:if test="#{iteracion.index%4 == 0}">
+								${cierre}
+							</c:if>
+							-->
 						</ui:repeat>
 					</h:form>
-				</ul>
+					</ul>
 				<!-- End ul#plans --> </section>
 			</div>
 			<!-- right pane -->

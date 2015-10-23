@@ -1,15 +1,15 @@
 package com;
  
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-
-import com.entities.Restaurante;
-import com.persistence.RestauranteUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+import com.entities.Restaurante;
+import com.persistence.RestauranteUtils;
  
 @ManagedBean
 @RequestScoped
@@ -158,5 +158,9 @@ public class RestauranteBean implements Serializable {
 		}
 	}
 	
+	public static boolean modulo(int numero, int modulo)
+	{
+		return numero%4 == 0;
+	}
  
 }
