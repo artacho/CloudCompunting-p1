@@ -28,7 +28,8 @@
 	<script>
 	    function initMap() {
 	    	var map = new google.maps.Map(document.getElementById('map'), {
-	    		zoom: 13
+	    		zoom: 13,
+	    		disableDefaultUI: true
 	    	});
 	    	var geocoder = new google.maps.Geocoder();
 	    	geocodeCenter(geocoder, map);
