@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.appengine.api.datastore.Entity;
 
-public class Restaurante implements Serializable {
+public class Restaurante implements Serializable, Comparable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -107,6 +107,12 @@ public class Restaurante implements Serializable {
 	public int hashCode(){
 	    return this.getEMAIL().hashCode();
 	  }
+
+	@Override
+	public int compareTo(Object arg0) {
+		Restaurante res = (Restaurante)arg0;
+		return this.getNOMBRE().compareTo(res.getNOMBRE());
+	}
 	
 
 }

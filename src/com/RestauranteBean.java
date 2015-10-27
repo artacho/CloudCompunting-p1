@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -155,9 +157,17 @@ public class RestauranteBean implements Serializable {
 			limpiarCampos();
 			// Añade el restaurante a la lista del ManagedBean
 			restaurantes.add(res);
+			Collections.sort(restaurantes, new CustomComparator());
 			return "/index.xhtml";
 		}
 		return "";
+	}
+	
+	public class CustomComparator implements Comparator<Restaurante> {
+	    @Override
+	    public int compare(Restaurante o1, Restaurante o2) {
+	        return o1.getNOMBRE().compareTo(o2.getNOMBRE());
+	    }
 	}
 	
 	public String eliminarRestaurante(){
@@ -188,7 +198,6 @@ public class RestauranteBean implements Serializable {
 	public void modificarRestaurante() throws IOException{
 		// Obtiene el restaurante seleccionado
 		restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
-		System.out.println("Email:"+email);
 		if(restauranteSeleccionado!= null){
 			restaurantes.remove(restaurantes.indexOf(restauranteSeleccionado));
 			// modifica los campos del restaurante
@@ -200,6 +209,7 @@ public class RestauranteBean implements Serializable {
 			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
 			// añade el restaurante modificado a la lista del ManagedBean
 			restaurantes.add(restauranteSeleccionado);
+			Collections.sort(restaurantes, new CustomComparator());
 			limpiarCampos();
 			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 		}else{
@@ -224,7 +234,10 @@ public class RestauranteBean implements Serializable {
 	@PostConstruct
 	public void inicializarDatos(){
 		limpiarCampos();
-		cargarRestaurantes();
+		if(restaurantes == null || restaurantes.isEmpty()){
+			cargarRestaurantes();
+		}
+
 		if(email != null){
 			restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
 		}

@@ -13,6 +13,10 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.memcache.AsyncMemcacheService;
+import com.google.appengine.api.memcache.MemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 
 public class RestauranteUtils {
 	
@@ -26,6 +30,8 @@ public class RestauranteUtils {
 	}
 	
 	public static List<Restaurante> getEntries() {
+		AsyncMemcacheService memcache = MemcacheServiceFactory.getAsyncMemcacheService();
+		memcache.clearAll();
 		final DatastoreService datastoreService = DSF.getDatastoreService();
 		final Query query = configureQuery();
 		final FetchOptions fetchOptions = configureFetchOptions();
@@ -34,7 +40,7 @@ public class RestauranteUtils {
 	
 		for (Entity entity: datastoreService.prepare(query).asList(fetchOptions)) {
 			restaurantes.add(convertEntityToRestaurante (entity));	
-		}		
+		}
 		return restaurantes;
 	}
 	
@@ -56,7 +62,7 @@ public class RestauranteUtils {
                 FilterOperator.NOT_EQUAL,
                 null);
 		query.setFilter(filtro);
-		query.addSort(Restaurante.NOMBRE, SortDirection.DESCENDING);		
+		query.addSort(Restaurante.NOMBRE, SortDirection.ASCENDING);		
 		return query;
 	}
 	
