@@ -15,6 +15,10 @@ public class Restaurante implements Serializable, Comparable{
 	
 	public static String DIRECCION = "direccion";
 	
+	public static String LATITUD ="latitud";
+	
+	public static String LONGITUD = "longitud";
+	
 	public static String EMAIL = "email";
 	
 	public static String TELEFONO = "telefono";
@@ -27,13 +31,16 @@ public class Restaurante implements Serializable, Comparable{
 	
 	// constructores
 	
-	public Restaurante(String email, String nombre, String direccion, String telefono, String descripcion, String flicker){
+	public Restaurante(String email, String nombre, String direccion, long latitud, long longitud, String telefono, String descripcion, String flicker){
 		entity.setProperty(EMAIL, email);
 		entity.setProperty(NOMBRE, nombre);
 		entity.setProperty(DIRECCION, direccion);
 		entity.setProperty(TELEFONO, telefono);
 		entity.setProperty(DESCRIPCION, descripcion);
 		entity.setProperty(FLICKER, flicker);
+		entity.setProperty(LATITUD, latitud);
+		entity.setProperty(LONGITUD, longitud);
+		
 	}
 	
 	// getters & setters
@@ -53,7 +60,23 @@ public class Restaurante implements Serializable, Comparable{
 	public void setDIRECCION(String direccion) {
 		entity.setProperty(DIRECCION, direccion);
 	}
-
+	
+	public long getLATITUD(){
+		return (long) entity.getProperty(LATITUD);
+	}
+	
+	public void setLATITUD(long latitud){
+		entity.setProperty(LATITUD, latitud);
+	}
+	
+	public long getLONGITUD(){
+		return (long) entity.getProperty(LONGITUD);
+	}
+	
+	public void setLONGITUD(long longitud){
+		entity.setProperty(LONGITUD, longitud);
+	}
+		
 	public String getEMAIL() {
 		return (String) entity.getProperty(EMAIL);
 	}

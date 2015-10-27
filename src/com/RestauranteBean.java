@@ -51,6 +51,10 @@ public class RestauranteBean implements Serializable {
 	
 	private String flicker;
 	
+	private long latitud;
+
+	private long longitud;
+	
 	// Getters & Setters
 
 	public String getFlicker() {
@@ -84,6 +88,24 @@ public class RestauranteBean implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	
+	public long getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(long latitud) {
+		this.latitud = latitud;
+	}
+
+	public long getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(long longitud) {
+		this.longitud = longitud;
+	}
+
 
 	public String getTelefono() {
 		return telefono;
@@ -152,7 +174,7 @@ public class RestauranteBean implements Serializable {
 		// comprueba que el email del restaurante no exista
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
 			// almacena el restaurante en el Datastore
-			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion,flicker);
+			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, latitud, longitud, telefono, descripcion,flicker);
 			// limpia los campos del formulario
 			limpiarCampos();
 			// AÃ±ade el restaurante a la lista del ManagedBean
@@ -191,6 +213,8 @@ public class RestauranteBean implements Serializable {
 		nombre = restauranteSeleccionado.getNOMBRE();
 		direccion = restauranteSeleccionado.getDIRECCION();
 		descripcion = restauranteSeleccionado.getDESCRIPCION();
+		latitud=restauranteSeleccionado.getLATITUD();
+		longitud=restauranteSeleccionado.getLONGITUD();
 		telefono = restauranteSeleccionado.getTELEFONO();
 		return "/modificar.xhtml";
 	}
@@ -204,6 +228,8 @@ public class RestauranteBean implements Serializable {
 			restauranteSeleccionado.setNOMBRE(nombre);
 			restauranteSeleccionado.setDIRECCION(direccion);
 			restauranteSeleccionado.setDESCRIPCION(descripcion);
+			restauranteSeleccionado.setLATITUD(latitud);
+			restauranteSeleccionado.setLONGITUD(longitud);
 			restauranteSeleccionado.setTELEFONO(telefono);
 			// actualiza el restaurante en el Datastore
 			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
@@ -221,6 +247,7 @@ public class RestauranteBean implements Serializable {
 		this.email = "";
 		this.direccion = "";
 		this.descripcion = "";
+		//los campos latitud y longitud se podrían inicializar aquí
 		this.nombre = "";
 		this.telefono = "";
 		restauranteSeleccionado = null;
@@ -280,6 +307,8 @@ public class RestauranteBean implements Serializable {
 		email = restauranteDetalles.getEMAIL() ;
 		nombre = restauranteDetalles.getNOMBRE();
 		direccion = restauranteDetalles.getDIRECCION();
+		latitud=restauranteDetalles.getLATITUD();
+		longitud=restauranteDetalles.getLONGITUD();
 		telefono = restauranteDetalles.getTELEFONO();
 		descripcion = restauranteDetalles.getDESCRIPCION();
 		return "./restaurante.xhtml";

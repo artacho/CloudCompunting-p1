@@ -22,9 +22,9 @@ public class RestauranteUtils {
 	
 	private static final int FETCH_MAX_RESULTS = 10;
 	
-	public static Restaurante insert(String email, String nombre, String direccion, String telefono, String descripcion, String flicker) {
+	public static Restaurante insert(String email, String nombre, String direccion, long latitud, long longitud, String telefono, String descripcion, String flicker) {
 		final DatastoreService datastoreService = DSF.getDatastoreService();
-		Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion, flicker);		
+		Restaurante restaurante = new Restaurante(email, nombre, direccion, latitud, longitud, telefono, descripcion, flicker);		
 		datastoreService.put(restaurante.getEntity());
 		return restaurante;
 	}
@@ -48,10 +48,12 @@ public class RestauranteUtils {
 		final String email = (String) entity.getProperty(Restaurante.EMAIL);
 		final String nombre = (String) entity.getProperty(Restaurante.NOMBRE);
 		final String direccion = (String) entity.getProperty(Restaurante.DIRECCION);
+		final long latitud = (long) entity.getProperty(Restaurante.LATITUD);
+		final long longitud = (long) entity.getProperty(Restaurante.LONGITUD);
 		final String telefono = (String) entity.getProperty(Restaurante.TELEFONO);
 		final String descripcion = (String) entity.getProperty(Restaurante.DESCRIPCION);
 		final String flicker = (String) entity.getProperty(Restaurante.FLICKER);
-		Restaurante res = new Restaurante(email, nombre, direccion, telefono, descripcion, flicker);
+		Restaurante res = new Restaurante(email, nombre, direccion, latitud, longitud, telefono, descripcion, flicker);
 		res.setEntity(entity);
 		return res;
 	}
@@ -114,6 +116,8 @@ public class RestauranteUtils {
 			res.setDESCRIPCION(restaurante.getDESCRIPCION());
 			res.setEMAIL(restaurante.getEMAIL());
 			res.setTELEFONO(restaurante.getTELEFONO());
+			res.setLATITUD(restaurante.getLATITUD());
+			res.setLONGITUD(restaurante.getLONGITUD());
 			final DatastoreService ds = DSF.getDatastoreService();
 			ds.put(res.getEntity());
 		}
