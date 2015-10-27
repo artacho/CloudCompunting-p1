@@ -10,19 +10,17 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.FetchOptions.Builder;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.memcache.MemcacheService;
-import com.google.appengine.api.memcache.MemcacheServiceFactory;
-import com.google.appengine.api.datastore.Query.FilterOperator;
 
 public class RestauranteUtils {
 	
 	private static final int FETCH_MAX_RESULTS = 10;
 	
-	public static Restaurante insert(String email, String nombre, String direccion, String telefono, String descripcion) {
+	public static Restaurante insert(String email, String nombre, String direccion, String telefono, String descripcion, String flicker) {
 		final DatastoreService datastoreService = DSF.getDatastoreService();
-		Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion);		
+		Restaurante restaurante = new Restaurante(email, nombre, direccion, telefono, descripcion, flicker);		
 		datastoreService.put(restaurante.getEntity());
 		return restaurante;
 	}
@@ -46,7 +44,8 @@ public class RestauranteUtils {
 		final String direccion = (String) entity.getProperty(Restaurante.DIRECCION);
 		final String telefono = (String) entity.getProperty(Restaurante.TELEFONO);
 		final String descripcion = (String) entity.getProperty(Restaurante.DESCRIPCION);
-		Restaurante res = new Restaurante(email, nombre, direccion, telefono, descripcion);
+		final String flicker = (String) entity.getProperty(Restaurante.FLICKER);
+		Restaurante res = new Restaurante(email, nombre, direccion, telefono, descripcion, flicker);
 		res.setEntity(entity);
 		return res;
 	}

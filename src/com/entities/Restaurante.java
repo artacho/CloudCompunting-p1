@@ -21,16 +21,19 @@ public class Restaurante implements Serializable {
 	
 	public static String DESCRIPCION = "descripcion";
 
+	public static String FLICKER = "flicker";
+	
 	private Entity entity = new Entity (RESTAURANTE_ENTITY);
 	
 	// constructores
 	
-	public Restaurante(String email, String nombre, String direccion, String telefono, String descripcion){
+	public Restaurante(String email, String nombre, String direccion, String telefono, String descripcion, String flicker){
 		entity.setProperty(EMAIL, email);
 		entity.setProperty(NOMBRE, nombre);
 		entity.setProperty(DIRECCION, direccion);
 		entity.setProperty(TELEFONO, telefono);
 		entity.setProperty(DESCRIPCION, descripcion);
+		entity.setProperty(FLICKER, flicker);
 	}
 	
 	// getters & setters
@@ -39,40 +42,48 @@ public class Restaurante implements Serializable {
 		return (String) entity.getProperty(NOMBRE);
 	}
 
-	public void setNOMBRE(String nOMBRE) {
-		entity.setProperty(NOMBRE, nOMBRE);
+	public void setNOMBRE(String nombre) {
+		entity.setProperty(NOMBRE, nombre);
 	}
 
 	public String getDIRECCION() {
 		return (String) entity.getProperty(DIRECCION);
 	}
 
-	public void setDIRECCION(String dIRECCION) {
-		entity.setProperty(DIRECCION, dIRECCION);
+	public void setDIRECCION(String direccion) {
+		entity.setProperty(DIRECCION, direccion);
 	}
 
 	public String getEMAIL() {
 		return (String) entity.getProperty(EMAIL);
 	}
 
-	public void setEMAIL(String eMAIL) {
-		entity.setProperty(EMAIL, eMAIL);
+	public void setEMAIL(String email) {
+		entity.setProperty(EMAIL, email);
 	}
 
 	public String getTELEFONO() {
 		return (String) entity.getProperty(TELEFONO);
 	}
 
-	public void setTELEFONO(String tELEFONO) {
-		entity.setProperty(TELEFONO, tELEFONO);
+	public void setTELEFONO(String telefono) {
+		entity.setProperty(TELEFONO, telefono);
 	}
 
 	public String getDESCRIPCION() {
 		return (String) entity.getProperty(DESCRIPCION);
 	}
 
-	public void setDESCRIPCION(String dESCRIPCION) {
-		entity.setProperty(DESCRIPCION, dESCRIPCION);
+	public void setDESCRIPCION(String descripcion) {
+		entity.setProperty(DESCRIPCION, descripcion);
+	}
+	
+	public String getFLICKER() {
+		return (String) entity.getProperty(FLICKER);
+	}
+
+	public void setFLICKER(String flicker) {
+		entity.setProperty(FLICKER, flicker);
 	}
 
 	public Entity getEntity() {

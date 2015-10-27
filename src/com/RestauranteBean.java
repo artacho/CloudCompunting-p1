@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,11 +19,6 @@ import com.entities.Restaurante;
 import com.flickr.Flickr;
 import com.google.gson.Gson;
 import com.persistence.RestauranteUtils;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
  
 @ManagedBean
 @SessionScoped
@@ -53,7 +47,17 @@ public class RestauranteBean implements Serializable {
 	
 	private String urlFoto;
 	
+	private String flicker;
+	
 	// Getters & Setters
+
+	public String getFlicker() {
+		return flicker;
+	}
+
+	public void setFlicker(String flicker) {
+		this.flicker = flicker;
+	}
 
 	public String getEmail() {
 		return email;
@@ -146,7 +150,7 @@ public class RestauranteBean implements Serializable {
 		// comprueba que el email del restaurante no exista
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
 			// almacena el restaurante en el Datastore
-			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion);
+			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, telefono, descripcion,flicker);
 			// limpia los campos del formulario
 			limpiarCampos();
 			// Añade el restaurante a la lista del ManagedBean
