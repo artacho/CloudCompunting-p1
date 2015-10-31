@@ -29,18 +29,10 @@ public class Restaurante implements Serializable, Comparable{
 	
 	private Entity entity = new Entity (RESTAURANTE_ENTITY);
 	
-	// constructores
+	// constructor
 	
-	public Restaurante(String email, String nombre, String direccion, long latitud, long longitud, String telefono, String descripcion, String flicker){
+	public Restaurante(String email){
 		entity.setProperty(EMAIL, email);
-		entity.setProperty(NOMBRE, nombre);
-		entity.setProperty(DIRECCION, direccion);
-		entity.setProperty(TELEFONO, telefono);
-		entity.setProperty(DESCRIPCION, descripcion);
-		entity.setProperty(FLICKER, flicker);
-		entity.setProperty(LATITUD, latitud);
-		entity.setProperty(LONGITUD, longitud);
-		
 	}
 	
 	// getters & setters

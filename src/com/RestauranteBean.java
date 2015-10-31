@@ -173,8 +173,17 @@ public class RestauranteBean implements Serializable {
 	public String anadirRestaurante(){
 		// comprueba que el email del restaurante no exista
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
+			// Crea un restaurante con los datos del formulario
+			Restaurante res = new Restaurante(email);
+			res.setNOMBRE(nombre);
+			res.setDESCRIPCION(descripcion);
+			res.setDIRECCION(direccion);
+			res.setLATITUD(latitud);
+			res.setLONGITUD(longitud);
+			res.setTELEFONO(telefono);
+			res.setFLICKER(flicker);
 			// almacena el restaurante en el Datastore
-			Restaurante res = RestauranteUtils.insert(email, nombre, direccion, latitud, longitud, telefono, descripcion,flicker);
+			RestauranteUtils.insert(res);
 			// limpia los campos del formulario
 			limpiarCampos();
 			// AÃ±ade el restaurante a la lista del ManagedBean
@@ -247,7 +256,8 @@ public class RestauranteBean implements Serializable {
 		this.email = "";
 		this.direccion = "";
 		this.descripcion = "";
-		//los campos latitud y longitud se podrían inicializar aquí
+		this.longitud = 0;
+		this.latitud = 0;
 		this.nombre = "";
 		this.telefono = "";
 		restauranteSeleccionado = null;

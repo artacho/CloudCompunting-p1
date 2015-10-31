@@ -22,11 +22,10 @@ public class RestauranteUtils {
 	
 	private static final int FETCH_MAX_RESULTS = 10;
 	
-	public static Restaurante insert(String email, String nombre, String direccion, long latitud, long longitud, String telefono, String descripcion, String flicker) {
+	
+	public static void insert(Restaurante restaurante){
 		final DatastoreService datastoreService = DSF.getDatastoreService();
-		Restaurante restaurante = new Restaurante(email, nombre, direccion, latitud, longitud, telefono, descripcion, flicker);		
 		datastoreService.put(restaurante.getEntity());
-		return restaurante;
 	}
 	
 	public static List<Restaurante> getEntries() {
@@ -45,15 +44,14 @@ public class RestauranteUtils {
 	}
 	
 	private static Restaurante convertEntityToRestaurante (final Entity entity) {
-		final String email = (String) entity.getProperty(Restaurante.EMAIL);
-		final String nombre = (String) entity.getProperty(Restaurante.NOMBRE);
-		final String direccion = (String) entity.getProperty(Restaurante.DIRECCION);
-		final long latitud = (long) entity.getProperty(Restaurante.LATITUD);
-		final long longitud = (long) entity.getProperty(Restaurante.LONGITUD);
-		final String telefono = (String) entity.getProperty(Restaurante.TELEFONO);
-		final String descripcion = (String) entity.getProperty(Restaurante.DESCRIPCION);
-		final String flicker = (String) entity.getProperty(Restaurante.FLICKER);
-		Restaurante res = new Restaurante(email, nombre, direccion, latitud, longitud, telefono, descripcion, flicker);
+		Restaurante res = new Restaurante( (String) entity.getProperty(Restaurante.EMAIL));
+		res.setNOMBRE((String) entity.getProperty(Restaurante.NOMBRE));
+		res.setDESCRIPCION((String) entity.getProperty(Restaurante.DESCRIPCION));
+		res.setDIRECCION((String) entity.getProperty(Restaurante.DIRECCION));
+		res.setLATITUD((long) entity.getProperty(Restaurante.LATITUD));
+		res.setLONGITUD((long) entity.getProperty(Restaurante.LONGITUD));
+		res.setTELEFONO((String) entity.getProperty(Restaurante.TELEFONO));
+		res.setFLICKER((String) entity.getProperty(Restaurante.FLICKER));
 		res.setEntity(entity);
 		return res;
 	}
