@@ -222,8 +222,8 @@ public class RestauranteBean implements Serializable {
 		nombre = restauranteSeleccionado.getNOMBRE();
 		direccion = restauranteSeleccionado.getDIRECCION();
 		descripcion = restauranteSeleccionado.getDESCRIPCION();
-		//latitud=restauranteSeleccionado.getLATITUD();
-		//longitud=restauranteSeleccionado.getLONGITUD();
+		latitud=restauranteSeleccionado.getLATITUD();
+		longitud=restauranteSeleccionado.getLONGITUD();
 		telefono = restauranteSeleccionado.getTELEFONO();
 		return "/modificar.xhtml";
 	}
@@ -237,8 +237,8 @@ public class RestauranteBean implements Serializable {
 			restauranteSeleccionado.setNOMBRE(nombre);
 			restauranteSeleccionado.setDIRECCION(direccion);
 			restauranteSeleccionado.setDESCRIPCION(descripcion);
-			//restauranteSeleccionado.setLATITUD(latitud);
-			//restauranteSeleccionado.setLONGITUD(longitud);
+			restauranteSeleccionado.setLATITUD(latitud);
+			restauranteSeleccionado.setLONGITUD(longitud);
 			restauranteSeleccionado.setTELEFONO(telefono);
 			// actualiza el restaurante en el Datastore
 			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
