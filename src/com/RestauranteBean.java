@@ -47,7 +47,7 @@ public class RestauranteBean implements Serializable {
 	
 	private String descripcion;
 	
-	private String urlFoto;
+	private List<String> urlFoto;	
 	
 	private String flicker;
 	
@@ -162,11 +162,11 @@ public class RestauranteBean implements Serializable {
 		this.restauranteDetalles = restauranteDetalles;
 	}
 	
-	public String getUrlFoto() {
+	public List<String> getUrlFoto() {
 		return urlFoto;
 	}
 
-	public void setUrlFoto(String urlFoto) {
+	public void setUrlFoto(List<String> urlFoto) {
 		this.urlFoto = urlFoto;
 	}
 
@@ -222,8 +222,8 @@ public class RestauranteBean implements Serializable {
 		nombre = restauranteSeleccionado.getNOMBRE();
 		direccion = restauranteSeleccionado.getDIRECCION();
 		descripcion = restauranteSeleccionado.getDESCRIPCION();
-		latitud=restauranteSeleccionado.getLATITUD();
-		longitud=restauranteSeleccionado.getLONGITUD();
+		//latitud=restauranteSeleccionado.getLATITUD();
+		//longitud=restauranteSeleccionado.getLONGITUD();
 		telefono = restauranteSeleccionado.getTELEFONO();
 		return "/modificar.xhtml";
 	}
@@ -237,8 +237,8 @@ public class RestauranteBean implements Serializable {
 			restauranteSeleccionado.setNOMBRE(nombre);
 			restauranteSeleccionado.setDIRECCION(direccion);
 			restauranteSeleccionado.setDESCRIPCION(descripcion);
-			restauranteSeleccionado.setLATITUD(latitud);
-			restauranteSeleccionado.setLONGITUD(longitud);
+			//restauranteSeleccionado.setLATITUD(latitud);
+			//restauranteSeleccionado.setLONGITUD(longitud);
 			restauranteSeleccionado.setTELEFONO(telefono);
 			// actualiza el restaurante en el Datastore
 			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
@@ -289,7 +289,7 @@ public class RestauranteBean implements Serializable {
 		Flickr flickr = null;
 		try {
 			String reply = "", line = "";
-			URL url = new URL("https://api.flickr.com/services/rest?method=flickr.photos.search&format=json&api_key=a6044c4da2ccca4c01b958d560bc4c77&tags=malaga&per_page=1");
+			URL url = new URL("https://api.flickr.com/services/rest?method=flickr.photos.search&format=json&api_key=a6044c4da2ccca4c01b958d560bc4c77&tags=malaga&per_page=20");
 			URLConnection urlConnection = url.openConnection();
 			urlConnection.setConnectTimeout(10000);
 			InputStream input = urlConnection.getInputStream();
@@ -302,25 +302,20 @@ public class RestauranteBean implements Serializable {
 			reply = reply.substring(0,reply.length()-1);
 			Gson gson = new Gson();
 			flickr = gson.fromJson(reply, Flickr.class);
+			
+			urlFoto = new ArrayList<String> ();
+			for (int i = 0; i < flickr.getPhotos().getPhoto().size(); i++) {
+				String secret = flickr.getPhotos().getPhoto().get(i).getSecret();
+				Integer farm = flickr.getPhotos().getPhoto().get(i).getFarm();
+				String id = flickr.getPhotos().getPhoto().get(i).getId();
+				String server = flickr.getPhotos().getPhoto().get(i).getServer();
+				urlFoto.add("https://farm"+farm+".staticflickr.com/"+server+"/"+id+"_"+secret+".jpg");
+			}
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
 		
-		String secret = flickr.getPhotos().getPhoto().get(0).getSecret();
-		Integer farm = flickr.getPhotos().getPhoto().get(0).getFarm();
-		String id = flickr.getPhotos().getPhoto().get(0).getId();
-		String server = flickr.getPhotos().getPhoto().get(0).getServer();
-		
-		urlFoto = "https://farm"+farm+".staticflickr.com/"+server+"/"+id+"_"+secret+".jpg";
-		
-		email = restauranteDetalles.getEMAIL() ;
-		nombre = restauranteDetalles.getNOMBRE();
-		direccion = restauranteDetalles.getDIRECCION();
-		latitud=restauranteDetalles.getLATITUD();
-		longitud=restauranteDetalles.getLONGITUD();
-		telefono = restauranteDetalles.getTELEFONO();
-		descripcion = restauranteDetalles.getDESCRIPCION();
 		return "./restaurante.xhtml";
 	}
  

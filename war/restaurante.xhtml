@@ -3,7 +3,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
  
 <h:head>
 	<title>Tapalia. Home.</title>
@@ -58,6 +60,7 @@
 	</script>
 </h:head>
 <h:body>
+<div class="row">
 	<div class="col-md-12">
 		<!-- content pane -->
 		<div class="container col-md-12 col-lg-12 col-sm-12" id="restauranteIndividual">
@@ -90,11 +93,56 @@
 				</ul>
 				</h:form>
 			</section>
-			<div class="col-sm-3 col-md-3 col-lg-3">
-				<h:graphicImage value="#{restauranteBean.urlFoto}" />
+			<div class="col-sm-3 col-md-3 col-lg-3"></div>
 			</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			  	<c:forEach items="#{restauranteBean.urlFoto}" var="item" varStatus="loop">
+    				<c:if test="#{loop.first}"><li data-target="#myCarousel" class="active" data-slide-to="#{loop.index}" ></li></c:if>
+   					<c:if test="#{!loop.first}"><li data-target="#myCarousel" data-slide-to="#{loop.index}"></li></c:if>
+				</c:forEach>
+			  </ol>
+			
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+			    <c:forEach items="#{restauranteBean.urlFoto}" var="item" varStatus="loop">
+    				<c:if test="#{loop.first}">
+    					<div class="item active">
+    						<h:graphicImage value="#{item}" />
+			    		</div>
+    				</c:if>
+   					<c:if test="#{!loop.first}">
+   						<div class="item">
+    						<h:graphicImage value="#{item}" />
+			    		</div>
+   					</c:if>
+				</c:forEach>			    
+			    
+			   			
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+			
+			
+				
+			
+		</div>
+		
 		</div>
 	</div>
+
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXTrMKew-jSEDgOAl0LoWiUIKfiqOidHQ&amp;signed_in=true&amp;callback=initMap" async="defer" />
 </h:body>
