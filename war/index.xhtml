@@ -37,7 +37,7 @@
 	    	
 	    	
 	    	<ui:repeat value="#{restauranteBean.restaurantes}" var="item">
-				geocodeAddress(geocoder,map,'#{item.DIRECCION}');
+				geocodeAddress(geocoder,map,'#{item.direccion}');
 			</ui:repeat>
 	    	
 	    	
@@ -136,8 +136,8 @@
 							-->
 							<li class="plan">
 								<ul class="planContainer">
-									<li class="title"><h2>#{item.NOMBRE}</h2></li>
-									<li class="price"><p>#{item.DIRECCION}</p></li>
+									<li class="title"><h2>#{item.nombre}</h2></li>
+									<li class="price"><p>#{item.direccion}</p></li>
 
 
 									<li class="button"><h:commandLink styleClass="btn"

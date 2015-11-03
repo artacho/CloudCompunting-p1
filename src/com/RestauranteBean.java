@@ -170,23 +170,26 @@ public class RestauranteBean implements Serializable {
 		this.urlFoto = urlFoto;
 	}
 
-	public String anadirRestaurante(){
+	public String anadirRestaurante() throws IOException{
 		// comprueba que el email del restaurante no exista
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
 			// Crea un restaurante con los datos del formulario
 			Restaurante res = new Restaurante(email);
-			res.setNOMBRE(nombre);
-			res.setDESCRIPCION(descripcion);
-			res.setDIRECCION(direccion);
-			res.setLATITUD(latitud);
-			res.setLONGITUD(longitud);
-			res.setTELEFONO(telefono);
-			res.setFLICKER(flicker);
+			res.setNombre(nombre);
+			res.setDescripcion(descripcion);
+			res.setDireccion(direccion);
+			res.setLatitud(Long.toString(latitud));
+			res.setLongitud(Long.toString(longitud));
+			res.setTelefono(telefono);
+			res.setFlicker(flicker);
 			// almacena el restaurante en el Datastore
 			RestauranteUtils.insert(res);
 			// limpia los campos del formulario
 			limpiarCampos();
 			// Añade el restaurante a la lista del ManagedBean
+			if(restaurantes == null){
+				restaurantes = new ArrayList<Restaurante>();
+			}
 			restaurantes.add(res);
 			Collections.sort(restaurantes, new CustomComparator());
 			return "/index.xhtml";
@@ -197,17 +200,17 @@ public class RestauranteBean implements Serializable {
 	public class CustomComparator implements Comparator<Restaurante> {
 	    @Override
 	    public int compare(Restaurante o1, Restaurante o2) {
-	        return o1.getNOMBRE().compareTo(o2.getNOMBRE());
+	        return o1.getNombre().compareTo(o2.getNombre());
 	    }
 	}
 	
 	public String eliminarRestaurante(){
 		// Obtiene el restaurante a partir del email
-		Restaurante res = RestauranteUtils.getRestaurante(restauranteDetalles.getEMAIL());
+		Restaurante res = RestauranteUtils.getRestaurante(restauranteDetalles.getEmail());
 		// Comprueba que el restaurante exista
 		if(res !=null){
 			// Elimina el restaurante del Datastore
-			RestauranteUtils.removeRestaurante(res.getEMAIL());
+			RestauranteUtils.removeRestaurante(res.getEmail());
 			// Elimina el restaurante de la lista del ManagedBean
 			restaurantes.remove(res);
 			return "/index.xhtml";
@@ -218,13 +221,13 @@ public class RestauranteBean implements Serializable {
 	
 	public String cargaFormularioModificarRestaurante(){
 		// Carga los datos del restaurante seleccionado en el formulario
-		email = restauranteSeleccionado.getEMAIL();
-		nombre = restauranteSeleccionado.getNOMBRE();
-		direccion = restauranteSeleccionado.getDIRECCION();
-		descripcion = restauranteSeleccionado.getDESCRIPCION();
-		latitud=restauranteSeleccionado.getLATITUD();
-		longitud=restauranteSeleccionado.getLONGITUD();
-		telefono = restauranteSeleccionado.getTELEFONO();
+		email = restauranteSeleccionado.getEmail();
+		nombre = restauranteSeleccionado.getNombre();
+		direccion = restauranteSeleccionado.getDireccion();
+		descripcion = restauranteSeleccionado.getDescripcion();
+		latitud= Long.parseLong(restauranteSeleccionado.getLatitud());
+		longitud=Long.parseLong(restauranteSeleccionado.getLongitud());
+		telefono = restauranteSeleccionado.getTelefono();
 		return "/modificar.xhtml";
 	}
 	
@@ -234,12 +237,12 @@ public class RestauranteBean implements Serializable {
 		if(restauranteSeleccionado!= null){
 			restaurantes.remove(restaurantes.indexOf(restauranteSeleccionado));
 			// modifica los campos del restaurante
-			restauranteSeleccionado.setNOMBRE(nombre);
-			restauranteSeleccionado.setDIRECCION(direccion);
-			restauranteSeleccionado.setDESCRIPCION(descripcion);
-			restauranteSeleccionado.setLATITUD(latitud);
-			restauranteSeleccionado.setLONGITUD(longitud);
-			restauranteSeleccionado.setTELEFONO(telefono);
+			restauranteSeleccionado.setNombre(nombre);
+			restauranteSeleccionado.setDireccion(direccion);
+			restauranteSeleccionado.setDescripcion(descripcion);
+			restauranteSeleccionado.setLatitud(Long.toString(latitud));
+			restauranteSeleccionado.setLongitud(Long.toString(longitud));
+			restauranteSeleccionado.setTelefono(telefono);
 			// actualiza el restaurante en el Datastore
 			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
 			// añade el restaurante modificado a la lista del ManagedBean
@@ -270,6 +273,7 @@ public class RestauranteBean implements Serializable {
 	
 	@PostConstruct
 	public void inicializarDatos(){
+		restaurantes = new ArrayList<Restaurante>();
 		limpiarCampos();
 		if(restaurantes == null || restaurantes.isEmpty()){
 			cargarRestaurantes();

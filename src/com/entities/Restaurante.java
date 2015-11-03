@@ -6,128 +6,104 @@ import com.google.appengine.api.datastore.Entity;
 
 public class Restaurante implements Serializable, Comparable{
 
-	
 	private static final long serialVersionUID = 1L;
-
-	public static String RESTAURANTE_ENTITY = "Restaurante";
 	
-	public static String NOMBRE = "nombre";
-	
-	public static String DIRECCION = "direccion";
-	
-	public static String LATITUD ="latitud";
-	
-	public static String LONGITUD = "longitud";
-	
-	public static String EMAIL = "email";
-	
-	public static String TELEFONO = "telefono";
-	
-	public static String DESCRIPCION = "descripcion";
-
-	public static String FLICKER = "flicker";
-	
-	private Entity entity = new Entity (RESTAURANTE_ENTITY);
+	private String nombre, direccion, latitud, longitud, email, telefono, descripcion, flicker;
 	
 	// constructor
 	
 	public Restaurante(String email){
-		entity.setProperty(EMAIL, email);
+		this.email = email;
 	}
 	
 	// getters & setters
 
-	public String getNOMBRE() {
-		return (String) entity.getProperty(NOMBRE);
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNOMBRE(String nombre) {
-		entity.setProperty(NOMBRE, nombre);
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDIRECCION() {
-		return (String) entity.getProperty(DIRECCION);
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setDIRECCION(String direccion) {
-		entity.setProperty(DIRECCION, direccion);
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getFlicker() {
+		return flicker;
+	}
+
+	public void setFlicker(String flicker) {
+		this.flicker = flicker;
 	}
 	
-	public long getLATITUD(){
-		return (long) entity.getProperty(LATITUD);
-	}
-	
-	public void setLATITUD(long latitud){
-		entity.setProperty(LATITUD, latitud);
-	}
-	
-	public long getLONGITUD(){
-		return (long) entity.getProperty(LONGITUD);
-	}
-	
-	public void setLONGITUD(long longitud){
-		entity.setProperty(LONGITUD, longitud);
-	}
-		
-	public String getEMAIL() {
-		return (String) entity.getProperty(EMAIL);
-	}
 
-	public void setEMAIL(String email) {
-		entity.setProperty(EMAIL, email);
-	}
-
-	public String getTELEFONO() {
-		return (String) entity.getProperty(TELEFONO);
-	}
-
-	public void setTELEFONO(String telefono) {
-		entity.setProperty(TELEFONO, telefono);
-	}
-
-	public String getDESCRIPCION() {
-		return (String) entity.getProperty(DESCRIPCION);
-	}
-
-	public void setDESCRIPCION(String descripcion) {
-		entity.setProperty(DESCRIPCION, descripcion);
-	}
-	
-	public String getFLICKER() {
-		return (String) entity.getProperty(FLICKER);
-	}
-
-	public void setFLICKER(String flicker) {
-		entity.setProperty(FLICKER, flicker);
-	}
-
-	public Entity getEntity() {
-		return entity;
-	}
-
-	public void setEntity(Entity entity) {
-		this.entity = entity;
-	}
 	
 	@Override
 	public boolean equals(Object r) {
 		if (r == null) return false;
 	    if (r == this) return true;
 	    if (!(r instanceof Restaurante))return false;
-	    if (((Restaurante)r).getEMAIL().equals(this.getEMAIL()))return true;
+	    if (((Restaurante)r).getEmail().equals(this.getEmail()))return true;
 	    else return false;
 	}
-	
+
 	@Override
 	public int hashCode(){
-	    return this.getEMAIL().hashCode();
+	    return this.getEmail().hashCode();
 	  }
 
 	@Override
 	public int compareTo(Object arg0) {
 		Restaurante res = (Restaurante)arg0;
-		return this.getNOMBRE().compareTo(res.getNOMBRE());
+		return this.getNombre().compareTo(res.getNombre());
 	}
 	
+
 
 }
