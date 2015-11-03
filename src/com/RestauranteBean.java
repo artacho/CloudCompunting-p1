@@ -123,7 +123,7 @@ public class RestauranteBean implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public int getNumberRestaurantes(){
+	public int getNumberRestaurantes() throws IOException{
 		return RestauranteUtils.getEntries().size();
 	}
 
@@ -266,7 +266,7 @@ public class RestauranteBean implements Serializable {
 		restauranteSeleccionado = null;
 	}
 	
-	public void cargarRestaurantes(){
+	public void cargarRestaurantes() throws IOException{
 		restaurantes = new ArrayList<Restaurante>();
 		restaurantes = RestauranteUtils.getEntries();
 	}
@@ -276,7 +276,12 @@ public class RestauranteBean implements Serializable {
 		restaurantes = new ArrayList<Restaurante>();
 		limpiarCampos();
 		if(restaurantes == null || restaurantes.isEmpty()){
-			cargarRestaurantes();
+			try {
+				cargarRestaurantes();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		if(email != null){
@@ -319,6 +324,14 @@ public class RestauranteBean implements Serializable {
 			
 			e.printStackTrace();
 		}
+		email = restauranteDetalles.getEmail() ;
+		nombre = restauranteDetalles.getNombre();
+		direccion = restauranteDetalles.getDireccion();
+		latitud= Long.parseLong(restauranteDetalles.getLatitud());
+		longitud=Long.parseLong(restauranteDetalles.getLongitud());
+		telefono = restauranteDetalles.getTelefono();
+		descripcion = restauranteDetalles.getDescripcion();
+
 		
 		return "./restaurante.xhtml";
 	}

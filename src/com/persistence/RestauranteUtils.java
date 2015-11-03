@@ -7,23 +7,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import java.lang.reflect.Type;
 import com.entities.Restaurante;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.FetchOptions.Builder;
-import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
-import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.memcache.AsyncMemcacheService;
-import com.google.appengine.api.memcache.MemcacheService;
-import com.google.appengine.api.memcache.MemcacheServiceFactory;
 import com.google.gson.Gson;
-import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.gson.reflect.TypeToken;
 
 public class RestauranteUtils {
 	
@@ -51,9 +40,22 @@ public class RestauranteUtils {
 		reader.close();
 	}
 	
-	public static List<Restaurante> getEntries(){
-		List<Restaurante> restaurantes = null;
-		
+	public static List<Restaurante> getEntries() throws IOException{
+		List<Restaurante> restaurantes = new ArrayList<Restaurante>();
+		Gson gson = new Gson();
+		String reply = "", line = "";
+		URL url = new URL("https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?apiKey=" + myAPIKey);
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+		urlConnection.setConnectTimeout(10000);
+		urlConnection.setRequestMethod("GET");
+		urlConnection.setRequestProperty("Content-Type", "application/json");
+		InputStream input = urlConnection.getInputStream();
+		BufferedReader reader = new BufferedReader (new InputStreamReader(input));
+		while ((line = reader.readLine()) != null) {
+			reply += line;
+		}
+		reader.close();
+		restaurantes = Arrays.asList(gson.fromJson(reply, Restaurante[].class));
 		return restaurantes;
 	}
 	

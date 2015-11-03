@@ -1,87 +1,212 @@
 package com.entities;
 
 import java.io.Serializable;
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import com.google.appengine.api.datastore.Entity;
-
-public class Restaurante implements Serializable, Comparable{
+@Generated("org.jsonschema2pojo")
+public class Restaurante implements Serializable, Comparable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String nombre, direccion, latitud, longitud, email, telefono, descripcion, flicker;
-	
-	// constructor
-	
-	public Restaurante(String email){
-		this.email = email;
-	}
-	
-	// getters & setters
+	@SerializedName("_id")
+    @Expose
+    private com.entities.Id Id;
+    @SerializedName("nombre")
+    @Expose
+    private String nombre;
+    @SerializedName("direccion")
+    @Expose
+    private String direccion;
+    @SerializedName("latitud")
+    @Expose
+    private String latitud;
+    @SerializedName("longitud")
+    @Expose
+    private String longitud;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("telefono")
+    @Expose
+    private String telefono;
+    @SerializedName("descripcion")
+    @Expose
+    private String descripcion;
+    @SerializedName("flicker")
+    @Expose
+    private String flicker;
+    
+    public Restaurante(){
 
-	public String getNombre() {
-		return nombre;
-	}
+    }
+    
+    public Restaurante(String email){
+    	this.email = email;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    /**
+     * 
+     * @return
+     *     The Id
+     */
+    public com.entities.Id getId() {
+        return Id;
+    }
 
-	public String getDireccion() {
-		return direccion;
-	}
+    /**
+     * 
+     * @param Id
+     *     The _id
+     */
+    public void setId(com.entities.Id Id) {
+        this.Id = Id;
+    }
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
+    /**
+     * 
+     * @return
+     *     The nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getLatitud() {
-		return latitud;
-	}
+    /**
+     * 
+     * @param nombre
+     *     The nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setLatitud(String latitud) {
-		this.latitud = latitud;
-	}
+    /**
+     * 
+     * @return
+     *     The direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
 
-	public String getLongitud() {
-		return longitud;
-	}
+    /**
+     * 
+     * @param direccion
+     *     The direccion
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
-	public void setLongitud(String longitud) {
-		this.longitud = longitud;
-	}
+    /**
+     * 
+     * @return
+     *     The latitud
+     */
+    public String getLatitud() {
+        return latitud;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * 
+     * @param latitud
+     *     The latitud
+     */
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * 
+     * @return
+     *     The longitud
+     */
+    public String getLongitud() {
+        return longitud;
+    }
 
-	public String getTelefono() {
-		return telefono;
-	}
+    /**
+     * 
+     * @param longitud
+     *     The longitud
+     */
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
+    /**
+     * 
+     * @return
+     *     The email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    /**
+     * 
+     * @param email
+     *     The email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    /**
+     * 
+     * @return
+     *     The telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
 
-	public String getFlicker() {
-		return flicker;
-	}
+    /**
+     * 
+     * @param telefono
+     *     The telefono
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
-	public void setFlicker(String flicker) {
-		this.flicker = flicker;
-	}
-	
+    /**
+     * 
+     * @return
+     *     The descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * 
+     * @param descripcion
+     *     The descripcion
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * 
+     * @return
+     *     The flicker
+     */
+    public String getFlicker() {
+        return flicker;
+    }
+
+    /**
+     * 
+     * @param flicker
+     *     The flicker
+     */
+    public void setFlicker(String flicker) {
+        this.flicker = flicker;
+    }
 
 	
 	@Override
