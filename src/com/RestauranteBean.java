@@ -55,6 +55,7 @@ public class RestauranteBean implements Serializable {
 
 	private long longitud;
 	
+	private boolean duplicatedEmail;
 	// Getters & Setters
 
 	public String getFlicker() {
@@ -169,9 +170,19 @@ public class RestauranteBean implements Serializable {
 	public void setUrlFoto(List<String> urlFoto) {
 		this.urlFoto = urlFoto;
 	}
+	
+	public boolean isDuplicatedEmail() {
+		return duplicatedEmail;
+	}
+
+	public void setDuplicatedEmail(boolean duplicatedEmail) {
+		this.duplicatedEmail = duplicatedEmail;
+	}
+ 
 
 	public String anadirRestaurante(){
 		// comprueba que el email del restaurante no exista
+		duplicatedEmail = false;
 		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
 			// Crea un restaurante con los datos del formulario
 			Restaurante res = new Restaurante(email);
@@ -190,6 +201,8 @@ public class RestauranteBean implements Serializable {
 			restaurantes.add(res);
 			Collections.sort(restaurantes, new CustomComparator());
 			return "/index.xhtml";
+		}  else {
+			duplicatedEmail = true;
 		}
 		return "";
 	}
