@@ -1,5 +1,5 @@
 package com;
- 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,40 +21,40 @@ import com.entities.Restaurante;
 import com.flickr.Flickr;
 import com.google.gson.Gson;
 import com.persistence.RestauranteUtils;
- 
+
 @ManagedBean
 @SessionScoped
 public class RestauranteBean implements Serializable {
- 
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private List<Restaurante> restaurantes;
-	
+
 	private Restaurante restauranteSeleccionado;
-	
+
 	private Restaurante restauranteDetalles;
-	
+
 	private String email;
-	
+
 	private String nombre;
-	
+
 	private String direccion;
-	
+
 	private String telefono;
-	
+
 	private String descripcion;
-	
-	private List<String> urlFoto;	
-	
+
+	private List<String> urlFoto;
+
 	private String flicker;
-	
+
 	private long latitud;
 
 	private long longitud;
-	
+
 	// Getters & Setters
 
 	public String getFlicker() {
@@ -88,8 +88,7 @@ public class RestauranteBean implements Serializable {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	
+
 	public long getLatitud() {
 		return latitud;
 	}
@@ -105,7 +104,6 @@ public class RestauranteBean implements Serializable {
 	public void setLongitud(long longitud) {
 		this.longitud = longitud;
 	}
-
 
 	public String getTelefono() {
 		return telefono;
@@ -123,7 +121,7 @@ public class RestauranteBean implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public int getNumberRestaurantes() throws IOException{
+	public int getNumberRestaurantes() throws IOException {
 		return RestauranteUtils.getEntries().size();
 	}
 
@@ -134,7 +132,7 @@ public class RestauranteBean implements Serializable {
 	public void setRestaurantes(List<Restaurante> restaurantes) {
 		this.restaurantes = restaurantes;
 	}
-	
+
 	public Restaurante getRestauranteSeleccionado() {
 		return restauranteSeleccionado;
 	}
@@ -142,17 +140,17 @@ public class RestauranteBean implements Serializable {
 	public void setRestauranteSeleccionado(Restaurante restauranteSeleccionado) {
 		this.restauranteSeleccionado = restauranteSeleccionado;
 	}
-	
+
 	public Restaurante getRestauranteDetalles() {
 		return restauranteDetalles;
 	}
-	
-	public void goAddPage() throws IOException{
+
+	public void goAddPage() throws IOException {
 		limpiarCampos();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("anadir.xhtml");
 	}
-	
-	public void goIndex() throws IOException{
+
+	public void goIndex() throws IOException {
 		limpiarCampos();
 		cargarRestaurantes();
 		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
@@ -161,7 +159,7 @@ public class RestauranteBean implements Serializable {
 	public void setRestauranteDetalles(Restaurante restauranteDetalles) {
 		this.restauranteDetalles = restauranteDetalles;
 	}
-	
+
 	public List<String> getUrlFoto() {
 		return urlFoto;
 	}
@@ -170,9 +168,9 @@ public class RestauranteBean implements Serializable {
 		this.urlFoto = urlFoto;
 	}
 
-	public String anadirRestaurante() throws IOException{
+	public String anadirRestaurante() throws IOException {
 		// comprueba que el email del restaurante no exista
-		if(!RestauranteUtils.existe(email) && email != null && email.length()>0){
+		if (!RestauranteUtils.existe(email) && email != null && email.length() > 0) {
 			// Crea un restaurante con los datos del formulario
 			Restaurante res = new Restaurante(email);
 			res.setNombre(nombre);
@@ -187,7 +185,7 @@ public class RestauranteBean implements Serializable {
 			// limpia los campos del formulario
 			limpiarCampos();
 			// Añade el restaurante a la lista del ManagedBean
-			if(restaurantes == null){
+			if (restaurantes == null) {
 				restaurantes = new ArrayList<Restaurante>();
 			}
 			restaurantes.add(res);
@@ -196,66 +194,58 @@ public class RestauranteBean implements Serializable {
 		}
 		return "";
 	}
-	
+
 	public class CustomComparator implements Comparator<Restaurante> {
-	    @Override
-	    public int compare(Restaurante o1, Restaurante o2) {
-	        return o1.getNombre().compareTo(o2.getNombre());
-	    }
-	}
-	
-	public String eliminarRestaurante(){
-		// Obtiene el restaurante a partir del email
-		Restaurante res = RestauranteUtils.getRestaurante(restauranteDetalles.getEmail());
-		// Comprueba que el restaurante exista
-		if(res !=null){
-			// Elimina el restaurante del Datastore
-			RestauranteUtils.removeRestaurante(res.getEmail());
-			// Elimina el restaurante de la lista del ManagedBean
-			restaurantes.remove(res);
-			return "/index.xhtml";
-		}else{
-			return "";
+		@Override
+		public int compare(Restaurante o1, Restaurante o2) {
+			return o1.getNombre().compareTo(o2.getNombre());
 		}
 	}
-	
-	public String cargaFormularioModificarRestaurante(){
+
+	public String eliminarRestaurante() {
+		// Comprueba que el restaurante exista
+		if (restauranteDetalles != null) {
+			// Elimina el restaurante de la base de datos
+			if (RestauranteUtils.removeRestaurante(restauranteDetalles.getId().get$oid())) {
+				// Elimina el restaurante de la lista del ManagedBean
+				restaurantes.remove(restauranteDetalles);
+				return "/index.xhtml";
+			}
+		}
+		return "";
+	}
+
+	public String cargaFormularioModificarRestaurante() {
 		// Carga los datos del restaurante seleccionado en el formulario
 		email = restauranteSeleccionado.getEmail();
 		nombre = restauranteSeleccionado.getNombre();
 		direccion = restauranteSeleccionado.getDireccion();
 		descripcion = restauranteSeleccionado.getDescripcion();
-		latitud= Long.parseLong(restauranteSeleccionado.getLatitud());
-		longitud=Long.parseLong(restauranteSeleccionado.getLongitud());
+		latitud = Long.parseLong(restauranteSeleccionado.getLatitud());
+		longitud = Long.parseLong(restauranteSeleccionado.getLongitud());
 		telefono = restauranteSeleccionado.getTelefono();
 		return "/modificar.xhtml";
 	}
-	
-	public void modificarRestaurante() throws IOException{
-		// Obtiene el restaurante seleccionado
-		restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
-		if(restauranteSeleccionado!= null){
-			restaurantes.remove(restaurantes.indexOf(restauranteSeleccionado));
-			// modifica los campos del restaurante
-			restauranteSeleccionado.setNombre(nombre);
-			restauranteSeleccionado.setDireccion(direccion);
-			restauranteSeleccionado.setDescripcion(descripcion);
-			restauranteSeleccionado.setLatitud(Long.toString(latitud));
-			restauranteSeleccionado.setLongitud(Long.toString(longitud));
-			restauranteSeleccionado.setTelefono(telefono);
-			// actualiza el restaurante en el Datastore
-			RestauranteUtils.updateRestaurante(restauranteSeleccionado);
-			// añade el restaurante modificado a la lista del ManagedBean
-			restaurantes.add(restauranteSeleccionado);
-			Collections.sort(restaurantes, new CustomComparator());
-			limpiarCampos();
-			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-		}else{
-			FacesContext.getCurrentInstance().getExternalContext().redirect("modificar.xhtml");
-		}
+
+	public void modificarRestaurante() throws IOException {
+		restaurantes.remove(restaurantes.indexOf(restauranteSeleccionado));
+		// modifica los campos del restaurante
+		restauranteSeleccionado.setNombre(nombre);
+		restauranteSeleccionado.setDireccion(direccion);
+		restauranteSeleccionado.setDescripcion(descripcion);
+		restauranteSeleccionado.setLatitud(Long.toString(latitud));
+		restauranteSeleccionado.setLongitud(Long.toString(longitud));
+		restauranteSeleccionado.setTelefono(telefono);
+		// actualiza el restaurante en el Datastore
+		RestauranteUtils.updateRestaurante(restauranteSeleccionado);
+		// añade el restaurante modificado a la lista del ManagedBean
+		restaurantes.add(restauranteSeleccionado);
+		Collections.sort(restaurantes, new CustomComparator());
+		limpiarCampos();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 	}
-	
-	public void limpiarCampos(){
+
+	public void limpiarCampos() {
 		this.email = "";
 		this.direccion = "";
 		this.descripcion = "";
@@ -265,17 +255,17 @@ public class RestauranteBean implements Serializable {
 		this.telefono = "";
 		restauranteSeleccionado = null;
 	}
-	
-	public void cargarRestaurantes() throws IOException{
+
+	public void cargarRestaurantes() throws IOException {
 		restaurantes = new ArrayList<Restaurante>();
 		restaurantes = RestauranteUtils.getEntries();
 	}
-	
+
 	@PostConstruct
-	public void inicializarDatos(){
+	public void inicializarDatos() {
 		restaurantes = new ArrayList<Restaurante>();
 		limpiarCampos();
-		if(restaurantes == null || restaurantes.isEmpty()){
+		if (restaurantes == null || restaurantes.isEmpty()) {
 			try {
 				cargarRestaurantes();
 			} catch (IOException e) {
@@ -284,56 +274,55 @@ public class RestauranteBean implements Serializable {
 			}
 		}
 
-		if(email != null){
+		if (email != null && !email.isEmpty()) {
 			restauranteSeleccionado = RestauranteUtils.getRestaurante(email);
 		}
 	}
-	
-	public static boolean modulo(int numero, int modulo)
-	{
-		return numero%4 == 0;
+
+	public static boolean modulo(int numero, int modulo) {
+		return numero % 4 == 0;
 	}
-	
-	public String consultarRestaurante () {
+
+	public String consultarRestaurante() {
 		Flickr flickr = null;
 		try {
 			String reply = "", line = "";
-			URL url = new URL("https://api.flickr.com/services/rest?method=flickr.photos.search&format=json&api_key=a6044c4da2ccca4c01b958d560bc4c77&tags=malaga&per_page=20");
+			URL url = new URL(
+					"https://api.flickr.com/services/rest?method=flickr.photos.search&format=json&api_key=a6044c4da2ccca4c01b958d560bc4c77&tags=malaga&per_page=20");
 			URLConnection urlConnection = url.openConnection();
 			urlConnection.setConnectTimeout(10000);
 			InputStream input = urlConnection.getInputStream();
-			BufferedReader reader = new BufferedReader (new InputStreamReader(input));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 			while ((line = reader.readLine()) != null) {
 				reply += line;
 			}
 			reader.close();
 			reply = reply.replace("jsonFlickrApi(", "");
-			reply = reply.substring(0,reply.length()-1);
+			reply = reply.substring(0, reply.length() - 1);
 			Gson gson = new Gson();
 			flickr = gson.fromJson(reply, Flickr.class);
-			
-			urlFoto = new ArrayList<String> ();
+
+			urlFoto = new ArrayList<String>();
 			for (int i = 0; i < flickr.getPhotos().getPhoto().size(); i++) {
 				String secret = flickr.getPhotos().getPhoto().get(i).getSecret();
 				Integer farm = flickr.getPhotos().getPhoto().get(i).getFarm();
 				String id = flickr.getPhotos().getPhoto().get(i).getId();
 				String server = flickr.getPhotos().getPhoto().get(i).getServer();
-				urlFoto.add("https://farm"+farm+".staticflickr.com/"+server+"/"+id+"_"+secret+".jpg");
+				urlFoto.add("https://farm" + farm + ".staticflickr.com/" + server + "/" + id + "_" + secret + ".jpg");
 			}
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
-		email = restauranteDetalles.getEmail() ;
+		email = restauranteDetalles.getEmail();
 		nombre = restauranteDetalles.getNombre();
 		direccion = restauranteDetalles.getDireccion();
-		latitud= Long.parseLong(restauranteDetalles.getLatitud());
-		longitud=Long.parseLong(restauranteDetalles.getLongitud());
+		latitud = Long.parseLong(restauranteDetalles.getLatitud());
+		longitud = Long.parseLong(restauranteDetalles.getLongitud());
 		telefono = restauranteDetalles.getTelefono();
 		descripcion = restauranteDetalles.getDescripcion();
 
-		
 		return "./restaurante.xhtml";
 	}
- 
+
 }
