@@ -70,14 +70,13 @@ public class RestauranteUtils {
 		Gson gson = new Gson();
 		String reply = "", line = "";
 		try {
-			String urlParameters = "q={\"email\":\"" + email + "\"}&apiKey=" + myAPIKey;
+			String urlParameters = "q=%7B%22email%22:%22" + email + "%22%7D&apiKey=" + myAPIKey;
 			URL url = new URL("https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?" + urlParameters);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setConnectTimeout(10000);
 			urlConnection.setRequestMethod("GET");
 			urlConnection.setRequestProperty("Content-Type", "application/json");
 			urlConnection.setDoOutput(true);
-			System.out.println(urlConnection.getURL());
 			InputStream input = urlConnection.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 			while ((line = reader.readLine()) != null) {

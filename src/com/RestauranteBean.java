@@ -203,6 +203,7 @@ public class RestauranteBean implements Serializable {
 	}
 
 	public String eliminarRestaurante() {
+		restauranteDetalles = RestauranteUtils.getRestaurante(email);
 		// Comprueba que el restaurante exista
 		if (restauranteDetalles != null) {
 			// Elimina el restaurante de la base de datos
