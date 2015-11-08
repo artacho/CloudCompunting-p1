@@ -13,8 +13,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import com.entities.Restaurante;
@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 import com.persistence.RestauranteUtils;
  
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class RestauranteBean implements Serializable {
  
 	/**
@@ -51,9 +51,9 @@ public class RestauranteBean implements Serializable {
 	
 	private String flicker;
 	
-	private long latitud;
+	private String latitud;
 
-	private long longitud;
+	private String longitud;
 	
 	private boolean duplicatedEmail;
 	// Getters & Setters
@@ -91,19 +91,19 @@ public class RestauranteBean implements Serializable {
 	}
 	
 	
-	public long getLatitud() {
+	public String getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(long latitud) {
+	public void setLatitud(String latitud) {
 		this.latitud = latitud;
 	}
 
-	public long getLongitud() {
+	public String getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(long longitud) {
+	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
 
@@ -235,7 +235,7 @@ public class RestauranteBean implements Serializable {
 		nombre = restauranteSeleccionado.getNOMBRE();
 		direccion = restauranteSeleccionado.getDIRECCION();
 		descripcion = restauranteSeleccionado.getDESCRIPCION();
-		latitud=restauranteSeleccionado.getLATITUD();
+		latitud= restauranteSeleccionado.getLATITUD();
 		longitud=restauranteSeleccionado.getLONGITUD();
 		telefono = restauranteSeleccionado.getTELEFONO();
 		return "/modificar.xhtml";
@@ -269,8 +269,8 @@ public class RestauranteBean implements Serializable {
 		this.email = "";
 		this.direccion = "";
 		this.descripcion = "";
-		this.longitud = 0;
-		this.latitud = 0;
+		this.longitud = "0";
+		this.latitud = "0";
 		this.nombre = "";
 		this.telefono = "";
 		restauranteSeleccionado = null;
@@ -328,6 +328,13 @@ public class RestauranteBean implements Serializable {
 			
 			e.printStackTrace();
 		}
+		email = restauranteDetalles.getEMAIL();
+		nombre = restauranteDetalles.getNOMBRE();
+		direccion = restauranteDetalles.getDIRECCION();
+		descripcion = restauranteDetalles.getDESCRIPCION();
+		latitud= restauranteDetalles.getLATITUD();
+		longitud=restauranteDetalles.getLONGITUD();
+		telefono = restauranteDetalles.getTELEFONO();
 		
 		return "./restaurante.xhtml";
 	}

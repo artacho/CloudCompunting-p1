@@ -14,9 +14,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.memcache.AsyncMemcacheService;
-import com.google.appengine.api.memcache.MemcacheService;
 import com.google.appengine.api.memcache.MemcacheServiceFactory;
-import com.google.appengine.api.datastore.Query.FilterOperator;
 
 public class RestauranteUtils {
 	
@@ -48,8 +46,8 @@ public class RestauranteUtils {
 		res.setNOMBRE((String) entity.getProperty(Restaurante.NOMBRE));
 		res.setDESCRIPCION((String) entity.getProperty(Restaurante.DESCRIPCION));
 		res.setDIRECCION((String) entity.getProperty(Restaurante.DIRECCION));
-		res.setLATITUD((long) entity.getProperty(Restaurante.LATITUD));
-		res.setLONGITUD((long) entity.getProperty(Restaurante.LONGITUD));
+		res.setLATITUD((String) entity.getProperty(Restaurante.LATITUD));
+		res.setLONGITUD((String) entity.getProperty(Restaurante.LONGITUD));
 		res.setTELEFONO((String) entity.getProperty(Restaurante.TELEFONO));
 		res.setFLICKER((String) entity.getProperty(Restaurante.FLICKER));
 		res.setEntity(entity);

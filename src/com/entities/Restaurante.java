@@ -53,19 +53,19 @@ public class Restaurante implements Serializable, Comparable{
 		entity.setProperty(DIRECCION, direccion);
 	}
 	
-	public long getLATITUD(){
-		return (long) entity.getProperty(LATITUD);
+	public String getLATITUD(){
+		return (String) entity.getProperty(LATITUD);
 	}
 	
-	public void setLATITUD(long latitud){
+	public void setLATITUD(String latitud){
 		entity.setProperty(LATITUD, latitud);
 	}
 	
-	public long getLONGITUD(){
-		return (long) entity.getProperty(LONGITUD);
+	public String getLONGITUD(){
+		return (String) entity.getProperty(LONGITUD);
 	}
 	
-	public void setLONGITUD(long longitud){
+	public void setLONGITUD(String longitud){
 		entity.setProperty(LONGITUD, longitud);
 	}
 		
