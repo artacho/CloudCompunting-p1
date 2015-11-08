@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -23,13 +24,23 @@ import com.google.gson.Gson;
 import com.persistence.RestauranteUtils;
 
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class RestauranteBean implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 357640336894612176L;
+
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 1L;
 
 	private List<Restaurante> restaurantes;
 

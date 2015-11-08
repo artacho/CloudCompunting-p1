@@ -14,14 +14,14 @@ import com.google.gson.Gson;
 
 public class RestauranteUtils {
 
-	private static String myAPIKey = "QU3xhQLeyPDR_7jYlckdEpRAqyiRq9WL";
-
+	private static String myAPIKey = "sc5glAzsaL-ym-qE9jt7jB5R_lRzrCMy";
+	private static String base_datos="prueba";
 	public static void insert(Restaurante restaurante) throws IOException {
 		Gson gson = new Gson();
 		String restauranteJson = gson.toJson(restaurante);
 		String reply = "", line = "";
 		URL url = new URL(
-				"https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?apiKey=" + myAPIKey);
+				"https://api.mongolab.com/api/1/databases/"+base_datos+"/collections/restaurantes?apiKey=" + myAPIKey);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setConnectTimeout(10000);
 		urlConnection.setRequestMethod("POST");
@@ -43,7 +43,7 @@ public class RestauranteUtils {
 		Gson gson = new Gson();
 		String reply = "", line = "";
 		URL url = new URL(
-				"https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?apiKey=" + myAPIKey);
+				"https://api.mongolab.com/api/1/databases/"+base_datos+"/collections/restaurantes?apiKey=" + myAPIKey);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setConnectTimeout(10000);
 		urlConnection.setRequestMethod("GET");
@@ -71,7 +71,7 @@ public class RestauranteUtils {
 		String reply = "", line = "";
 		try {
 			String urlParameters = "q=%7B%22email%22:%22" + email + "%22%7D&apiKey=" + myAPIKey;
-			URL url = new URL("https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?" + urlParameters);
+			URL url = new URL("https://api.mongolab.com/api/1/databases/"+base_datos+"/collections/restaurantes?" + urlParameters);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setConnectTimeout(10000);
 			urlConnection.setRequestMethod("GET");
@@ -97,7 +97,7 @@ public class RestauranteUtils {
 	public static boolean removeRestaurante(String id) {
 			try {
 			URL url = new URL(
-					"https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes/"+ id+"?apiKey=" + myAPIKey);
+					"https://api.mongolab.com/api/1/databases/"+base_datos+"/collections/restaurantes/"+ id+"?apiKey=" + myAPIKey);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setConnectTimeout(10000);
 			urlConnection.setRequestMethod("DELETE");
@@ -115,7 +115,7 @@ public class RestauranteUtils {
 		String restauranteJson = gson.toJson(restaurante);
 		String reply = "", line = "";
 		URL url = new URL(
-				"https://api.mongolab.com/api/1/databases/dbprueba/collections/restaurantes?apiKey=" + myAPIKey);
+				"https://api.mongolab.com/api/1/databases/"+base_datos+"/collections/restaurantes?apiKey=" + myAPIKey);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setConnectTimeout(10000);
 		urlConnection.setRequestMethod("PUT");
